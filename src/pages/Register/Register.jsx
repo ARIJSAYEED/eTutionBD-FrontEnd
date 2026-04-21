@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { use } from 'react';
 import Logo from '../../components/shared/Logo';
 import { Link } from 'react-router';
 import registerImg from '../../assets/register.png'
+import { useForm } from "react-hook-form"
+import { AuthContext } from '../../Context/Auth/AuthContext';
+
 
 const Register = () => {
+    const{signUp}=use(AuthContext)
+    const { register, handleSubmit } = useForm();
+
+    const handleSignUp = (data) => {
+        console.log(data);
+        
+        signUp(data.email,data.password)
+        .then(res=>{
+            console.log(res.user);
+            console.log("registered successful");
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+
     return (
         <div className="w-11/12 mx-auto py-10 flex justify-center flex-col gap-6">
             <div className='flex justify-center items-center'>
@@ -20,25 +39,32 @@ const Register = () => {
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
                     </p>
                     <div className='border p-6 rounded-md border-neutral-300 shadow-xl'>
-                        <form className='*:w-full space-y-4' action="">
+                        <form onSubmit={handleSubmit(handleSignUp)} className='*:w-full space-y-4'>
                             {/* Image  */}
-                            <label className='text-primary font-semibold'>Upload your Image</label>
-                            <input type="file" className="file-input" />
+                            {/* <label className='text-primary font-semibold'>Upload your Image</label>
+                            <input type="file" className="file-input" /> */}
 
                             {/* name  */}
                             <label className='text-primary font-semibold'>Name</label>
-                            <input className='input' type="text" name="name" id="" placeholder='enter your name' />
+                            <input
+                                {...register("name")}
+                                className='input' type="text" placeholder='enter your name' />
 
                             {/* email  */}
                             <label className='text-primary font-semibold'>Email</label>
-                            <input className='input' type="text" name="email" id="" placeholder='enter your email' />
+                            <input
+                                {...register("email")}
+                                className='input' type="email" placeholder='enter your email' />
+
                             {/* password  */}
                             <label className='text-primary font-semibold'>Password</label>
-                            <input className='input' type="password" name="" id="" placeholder='enter your password' />
+                            <input
+                                {...register("password")}
+                                className='input' type="password" placeholder='enter your password' />
 
                             {/* forget-password  */}
                             <a className='link text-sm' href="">forget password</a>
-                            
+
                             {/* register-button  */}
                             <button className="btn w-full btn-primary uppercase my-4">Register</button>
 
