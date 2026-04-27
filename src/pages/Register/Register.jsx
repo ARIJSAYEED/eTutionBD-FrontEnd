@@ -1,26 +1,43 @@
 import React, { use } from 'react';
 import Logo from '../../components/shared/Logo';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import registerImg from '../../assets/register.png'
 import { useForm } from "react-hook-form"
 import { AuthContext } from '../../Context/Auth/AuthContext';
+import Swal from 'sweetalert2'
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 
 const Register = () => {
-    const{signUp}=use(AuthContext)
+    const { signUp } = use(AuthContext)
     const { register, handleSubmit } = useForm();
+    const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate();
 
     const handleSignUp = (data) => {
         console.log(data);
-        
-        signUp(data.email,data.password)
-        .then(res=>{
-            console.log(res.user);
-            console.log("registered successful");
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+        signUp(data.email, data.password)
+            .then(res => {
+                console.log(res.user);
+                axiosSecure.post('/users', data)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Registration Successful",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        navigate('/')
+
+                    })
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     return (
