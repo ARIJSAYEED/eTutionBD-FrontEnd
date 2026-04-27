@@ -2,9 +2,13 @@ import React from 'react';
 import Logo from './Logo';
 import { Link, NavLink } from 'react-router';
 import { FiLogIn } from "react-icons/fi";
+import { use } from 'react';
+import { AuthContext } from '../../Context/Auth/AuthContext';
 
 
 const NavBar = () => {
+    const { user, LogOut } = use(AuthContext);
+    // console.log(user);
     const links = [
         <li key="1"><NavLink to='/'>Home</NavLink></li>,
         <li key="2"><NavLink to='/dashboard'>Dashboard</NavLink></li>,
@@ -33,11 +37,19 @@ const NavBar = () => {
                     {links}
                 </ul>
             </div>
+
             <div className="navbar-end space-x-2">
-                <Link to="/auth/signin" className="btn text-white bg-linear-60 from-primary to-secondary">
-                    <FiLogIn ></FiLogIn>
-                    SignIn
-                    </Link>
+                {
+                    user ?
+                        <Link onClick={LogOut} className='btn bg-primary text-white'>
+                            SignOut
+                        </Link>
+                        :
+                        <Link to="/auth/signin" className="btn text-white bg-linear-60 from-primary to-secondary">
+                            <FiLogIn ></FiLogIn>
+                            SignIn
+                        </Link>
+                }
                 <a className="btn btn-outline border-primary text-primary">Apply for tutor</a>
             </div>
         </div>

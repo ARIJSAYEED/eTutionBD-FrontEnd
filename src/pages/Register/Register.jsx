@@ -6,17 +6,18 @@ import { useForm } from "react-hook-form"
 import { AuthContext } from '../../Context/Auth/AuthContext';
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import SocialLogin from '../../components/shared/SocialLogin';
 
 
 const Register = () => {
-    const { signUp } = use(AuthContext)
+    const { SignUp } = use(AuthContext)
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate();
 
     const handleSignUp = (data) => {
         console.log(data);
-        signUp(data.email, data.password)
+        SignUp(data.email, data.password)
             .then(res => {
                 console.log(res.user);
                 axiosSecure.post('/users', data)
@@ -84,6 +85,11 @@ const Register = () => {
 
                             {/* register-button  */}
                             <button className="btn w-full btn-primary uppercase my-4">Register</button>
+
+                            <p className='text-center text-sm text-neutral-600'>Or</p>
+                            
+                            {/* social-login  */}
+                            <SocialLogin></SocialLogin>
 
                             <p>Already have an acccount? <Link to="/auth/signin" className='link text-primary'>Sign-In</Link></p>
                         </form>

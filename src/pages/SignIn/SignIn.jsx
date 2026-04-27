@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { use } from 'react';
 import Logo from '../../components/shared/Logo';
 import signInImg from '../../assets/sign-in.png'
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../Context/Auth/AuthContext';
+import Swal from 'sweetalert2';
+import SocialLogin from '../../components/shared/SocialLogin';
 
 const SignIn = () => {
+    const { LogIn } = use(AuthContext);
+    const { register, handleSubmit } = useForm()
+    const navigate = useNavigate()
+
+    const handleSignIn = (data) => {
+        const email = data.email
+        const password = data.password
+        LogIn(email, password)
+            .then(res => {
+                console.log(res);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "LogIn Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
     return (
         <div className="w-11/12 mx-auto py-10 flex justify-center flex-col gap-6">
             <div className='flex justify-center items-center'>
@@ -20,18 +48,27 @@ const SignIn = () => {
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
                     </p>
                     <div className='border p-6 rounded-md border-neutral-300 shadow-xl'>
-                        <form className='*:w-full space-y-4' action="">
+                        <form onSubmit={handleSubmit(handleSignIn)} className='*:w-full space-y-4'>
                             {/* email  */}
                             <label className='text-primary font-semibold'>Email</label>
-                            <input className='input' type="text" name="email" id="" placeholder='enter your email' />
+                            <input
+                                {...register("email", { required: true })}
+                                className='input' type="text" name="email" placeholder='enter your email' />
+
                             {/* password  */}
                             <label className='text-primary font-semibold'>Password</label>
-                            <input className='input' type="password" name="" id="" placeholder='enter your password' />
+                            <input
+                                {...register("password", { required: true })}
+                                className='input' type="password" placeholder='enter your password' />
 
                             {/* forget-password  */}
                             <a className='link text-sm' href="">forget password</a>
 
                             <button className="btn w-full btn-primary uppercase my-4">Sign In</button>
+
+                            <p className='text-center text-sm text-neutral-600'>Or</p>
+
+                            <SocialLogin></SocialLogin>
 
                             <p>New to our platform? <Link to="/auth/register" className='link text-primary'>Register</Link></p>
                         </form>
