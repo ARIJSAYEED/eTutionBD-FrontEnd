@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { use } from 'react';
 import Logo from './Logo';
 import { Link, NavLink } from 'react-router';
 import { FiLogIn } from "react-icons/fi";
-import { use } from 'react';
 import { AuthContext } from '../../Context/Auth/AuthContext';
 
 

@@ -9,7 +9,8 @@ const SocialLogin = () => {
         <div>
             <button onClick={GoogleLogIn} className="btn w-full">
                 <FcGoogle />
-                Sign In with Google</button>
+                Sign In with Google
+            </button>
         </div>
     );
 };
