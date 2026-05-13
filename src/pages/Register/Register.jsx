@@ -7,6 +7,7 @@ import { AuthContext } from '../../Context/Auth/AuthContext';
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import SocialLogin from '../../components/shared/SocialLogin';
+import axios from 'axios';
 
 
 const Register = () => {
@@ -16,25 +17,53 @@ const Register = () => {
     const navigate = useNavigate();
 
     const handleSignUp = (data) => {
+
         console.log(data);
+
+        const image = data.image[0]
+        console.log(image)
+
         SignUp(data.email, data.password)
             .then(res => {
+
+                // getting the user info
                 console.log(res.user);
-                axiosSecure.post('/users', data)
+
+                const formData = new FormData();
+                formData.append('image', image)
+
+                // sensitive data, must store the api key into env file
+                const imgapiurl = `https://api.imgbb.com/1/upload?key=65e600d84bfeaacc6d56a7402516424c`
+
+                axios.post(imgapiurl, formData)
                     .then(res => {
-                        if (res.data.insertedId) {
-                            Swal.fire({
-                                position: "center",
-                                icon: "success",
-                                title: "Registration Successful",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        }
-                        navigate('/')
+                        // getting the image url
+                        const photoURL = res.data.data.url;
+
+                        console.log(photoURL)
+
+                        // adding the url to the data 
+                        data.image = photoURL;
+
+                        // saving the user data into database
+                        axiosSecure.post('/users', data)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        position: "center",
+                                        icon: "success",
+                                        title: "Registration Successful",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                                navigate('/')
+                            })
+                            
+                            // need to update the firebase user here
+
 
                     })
-
             })
             .catch(err => {
                 console.log(err);
@@ -58,9 +87,10 @@ const Register = () => {
                     </p>
                     <div className='border p-6 rounded-md border-neutral-300 shadow-xl'>
                         <form onSubmit={handleSubmit(handleSignUp)} className='*:w-full space-y-4'>
+
                             {/* Image  */}
-                            {/* <label className='text-primary font-semibold'>Upload your Image</label>
-                            <input type="file" className="file-input" /> */}
+                            <label className='text-primary font-semibold'>Upload your Image</label>
+                            <input {...register("image")} type="file" className="file-input" />
 
                             {/* name  */}
                             <label className='text-primary font-semibold'>Name</label>
@@ -87,7 +117,7 @@ const Register = () => {
                             <button className="btn w-full btn-primary uppercase my-4">Register</button>
 
                             <p className='text-center text-sm text-neutral-600'>Or</p>
-                            
+
                             {/* social-login  */}
                             <SocialLogin></SocialLogin>
 
