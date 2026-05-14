@@ -59,8 +59,8 @@ const Register = () => {
                                 }
                                 navigate('/')
                             })
-                            
-                            // need to update the firebase user here
+
+                        // need to update the firebase user here
 
 
                     })
@@ -103,6 +103,20 @@ const Register = () => {
                             <input
                                 {...register("email")}
                                 className='input' type="email" placeholder='enter your email' />
+
+                            {/* role  */}
+                            <label className='text-primary font-semibold'>Your Role</label>
+                            <label
+                                {...register('role')}
+                                for="roles" className='select'>
+                                <span className="label">Select Your Role</span>
+                                <select
+                                    {...register('role')}
+                                    id="roles">
+                                    <option value="student">Student</option>
+                                    <option value="tutor">Tutor</option>
+                                </select>
+                            </label>
 
                             {/* password  */}
                             <label className='text-primary font-semibold'>Password</label>

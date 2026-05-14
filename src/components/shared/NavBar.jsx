@@ -8,13 +8,17 @@ import { AuthContext } from '../../Context/Auth/AuthContext';
 const NavBar = () => {
     const { user, LogOut } = use(AuthContext);
     // console.log(user);
-    const links = [
-        <li key="1"><NavLink to='/'>Home</NavLink></li>,
-        <li key="2"><NavLink to='/dashboard'>Dashboard</NavLink></li>,
-        <li key="3"><NavLink to='/find-tution'>Find Tution</NavLink></li>,
-        <li key="4"><NavLink to='/about'>About</NavLink></li>,
-        <li key="5"><NavLink to='/contact'>Contact</NavLink></li>,
-    ]
+    const links =
+        <>
+            <li key="1"><NavLink to='/'>Home</NavLink></li>
+            {
+                user && <li key="2"><NavLink to='/dashboard'>Dashboard</NavLink></li>
+            }
+            <li key="3"><NavLink to='/tutions'>Tutions</NavLink></li>
+            <li key="4"><NavLink to='/tutors'>Tutors</NavLink></li>
+            <li key="5"><NavLink to='/about'>About</NavLink></li>
+            <li key="6"><NavLink to='/contact'>Contact</NavLink></li>
+        </>
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
