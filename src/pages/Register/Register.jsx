@@ -11,9 +11,9 @@ import axios from 'axios';
 
 
 const Register = () => {
-    const { SignUp } = use(AuthContext)
+    const { SignUp } = use(AuthContext);
     const { register, handleSubmit } = useForm();
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
 
     const handleSignUp = (data) => {
