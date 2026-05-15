@@ -10,6 +10,7 @@ import PostNewTution from '../pages/Dashboard/Student/PostNewTution';
 import MyTutions from '../pages/Dashboard/Student/MyTutions';
 import AppliedTutors from '../pages/Dashboard/Student/AppliedTutors';
 import Payments from '../pages/Dashboard/Student/Payments';
+import Tutions from '../pages/Tutions/Tutions';
 
 const router = createBrowserRouter([
     {
@@ -20,9 +21,14 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
-            }
+            },
+            {
+                path: 'tutions',
+                element: <Tutions></Tutions>
+            },
         ]
     },
+
     {
         path: 'dashboard',
         element: <Dashboard></Dashboard>,

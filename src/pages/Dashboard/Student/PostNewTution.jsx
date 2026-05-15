@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { use } from 'react';
 import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../Context/Auth/AuthContext';
 
 const PostNewTution = () => {
+    const { user } = use(AuthContext);
+    console.log(user.email)
 
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure()
@@ -53,7 +56,12 @@ const PostNewTution = () => {
                                 <label className='text-[16px] text-primary font-semibold'>Student Email</label>
                                 <input
                                     {...register('studentEmail')}
-                                    className='input w-full' type="email" placeholder="e.g. student@email.com" />
+                                    className='input w-full'
+                                    type="email"
+                                    placeholder="e.g. student@email.com"
+                                    defaultValue={user.email}
+                                    readOnly
+                                />
                             </div>
 
                             {/* Guardian Phone */}
