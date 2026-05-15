@@ -33,7 +33,8 @@ const LatestTuition = () => {
                     <span><IoIosArrowForward></IoIosArrowForward> </span>
                 </div>
             </div>
-            <div className='grid grid-cols-4 gap-5'>
+            <div className='divider'></div>
+            <div className='grid grid-cols-4 gap-4'>
                 {
                     latestTutions.map((tution, i) => <TutionCard key={i} tution={tution}></TutionCard>)
                 }

@@ -11,6 +11,7 @@ import MyTutions from '../pages/Dashboard/Student/MyTutions';
 import AppliedTutors from '../pages/Dashboard/Student/AppliedTutors';
 import Payments from '../pages/Dashboard/Student/Payments';
 import Tutions from '../pages/Tutions/Tutions';
+import Tutors from '../pages/Tutors/Tutors';
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: 'tutions',
                 element: <Tutions></Tutions>
+            },
+            {
+                path: 'tutors',
+                element: <Tutors></Tutors>
             },
         ]
     },
