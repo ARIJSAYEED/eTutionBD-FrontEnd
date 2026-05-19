@@ -17,7 +17,7 @@ const LatestTuition = () => {
         }
     })
 
-    const latestTutions = tutions.slice(-4).reverse(); // ← trim to 4
+    // const latestTutions = tutions.slice(-4).reverse(); // ← trim to 4
 
 
     // console.log("latest tution post from home page", tutions);
@@ -36,7 +36,7 @@ const LatestTuition = () => {
             <div className='divider'></div>
             <div className='grid grid-cols-4 gap-4'>
                 {
-                    latestTutions.map((tution, i) => <TutionCard key={i} tution={tution}></TutionCard>)
+                    tutions.map((tution, i) => <TutionCard key={i} tution={tution}></TutionCard>)
                 }
             </div>
         </div>

@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
 const Register = () => {
-    const { SignUp } = use(AuthContext);
+    const { SignUp, updateUser } = use(AuthContext);
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
@@ -37,6 +37,7 @@ const Register = () => {
 
                 axios.post(imgapiurl, formData)
                     .then(res => {
+
                         // getting the image url
                         const photoURL = res.data.data.url;
 
@@ -57,10 +58,21 @@ const Register = () => {
                                         timer: 1500
                                     });
                                 }
-                                navigate('/')
+
                             })
 
-                        // need to update the firebase user here
+                        // updated the firebase user here
+                        const userProfile = {
+                            displayName: data.name,
+                            photoURL: photoURL
+                        }
+
+                        updateUser(userProfile)
+                            .then(() => {
+                                console.log("user profile updated")
+                                navigate('/')
+                            })
+                            .catch(err => console.log(err))
 
 
                     })

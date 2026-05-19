@@ -5,7 +5,7 @@ import { AuthContext } from '../../Context/Auth/AuthContext';
 
 const HeroSection = () => {
     const { user } = useContext(AuthContext);
-    console.log("the home page user is", user);
+    // console.log("the home page user is", user);
     return (
         <div className='flex items-center'>
             <div className='w-1/2 space-y-4'>

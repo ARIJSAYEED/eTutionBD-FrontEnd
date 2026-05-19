@@ -15,7 +15,7 @@ const LatestTutors = () => {
             return res.data;
         }
     })
-    console.log(tutors)
+    // console.log(tutors)
     return (
         <div className='space-y-4'>
             <div className='flex justify-between items-center'>

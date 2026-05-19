@@ -44,16 +44,23 @@ const NavBar = () => {
             <div className="navbar-end space-x-2">
                 {
                     user ?
-                        <Link onClick={LogOut} className='btn bg-primary text-white'>
-                            SignOut
-                        </Link>
+                        <div className='space-x-2'>
+                            <Link onClick={LogOut} className='btn bg-primary text-white'>
+                                SignOut
+                            </Link>
+                            <div className="avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src={user.photoURL} />
+                                </div>
+                            </div>
+                        </div>
                         :
                         <Link to="/auth/signin" className="btn text-white bg-linear-60 from-primary to-secondary">
                             <FiLogIn ></FiLogIn>
                             SignIn
                         </Link>
                 }
-                <a className="btn btn-outline border-primary text-primary">Apply for tutor</a>
+                {/*      */}
             </div>
         </div>
     );
