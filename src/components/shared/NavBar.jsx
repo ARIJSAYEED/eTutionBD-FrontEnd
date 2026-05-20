@@ -49,7 +49,7 @@ const NavBar = () => {
                                 SignOut
                             </Link>
                             <div className="avatar">
-                                <div className="w-10 rounded-full">
+                                <div className="w-10 rounded">
                                     <img src={user.photoURL} />
                                 </div>
                             </div>

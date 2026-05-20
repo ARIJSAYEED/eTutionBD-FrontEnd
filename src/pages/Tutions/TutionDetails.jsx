@@ -21,7 +21,7 @@ const TutionDetails = () => {
         }
     });
 
-    const { data: applications = [] } = useQuery({
+    const { data: applications = [], refetch } = useQuery({
         queryKey: ['tution-applications', tutionId],
         queryFn: async () => {
             const res = await axiosSecure.get(`/tutionApplications?tutionId=${tutionId}`);
@@ -53,6 +53,7 @@ const TutionDetails = () => {
         const applicationData = {
             tutionId: _id,
             classGrade,
+            TutorImage: user?.photoURL,
             ...data
         };
 
@@ -61,6 +62,7 @@ const TutionDetails = () => {
         axiosSecure.post('/tutionApplications', applicationData)
             .then((res) => {
                 console.log(res)
+                refetch()
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
@@ -85,7 +87,7 @@ const TutionDetails = () => {
     return (
         <div className="min-h-screen bg-neutral-50">
 
-            <div className='flex space-6'>
+            <div>
                 <div>
                     {/* ── Hero Banner ── */}
                     <div className="bg-white border-b border-neutral-200">
@@ -219,31 +221,63 @@ const TutionDetails = () => {
                 </div>
 
                 {/* Applications */}
-                {applications.length === 0 ? (
-                    <p className="text-sm text-neutral-500">No applications yet.</p>
-                ) : (
-                    <div className="flex flex-col gap-4">
-                        {applications.map(app => (
-                            <div
-                                key={app._id}
-                                className="flex items-start justify-between border-b border-neutral-100 pb-4 last:border-b-0 last:pb-0"
-                            >
-                                <div>
-                                    <h3 className="text-base font-semibold text-neutral-800">{app.name}</h3>
-                                    <p className="text-sm text-neutral-500">{app.email}</p>
-                                    <div className="flex flex-wrap gap-2 mt-2">
-                                        <span className="badge badge-outline badge-sm">{app.qualifications}</span>
-                                        <span className="badge badge-outline badge-sm">{app.experience}</span>
+                <div className="bg-white rounded-xl border border-neutral-200 p-6">
+                    <h2 className="text-sm font-semibold text-neutral-600 uppercase tracking-widest mb-4">
+                        Applications ({applications.length})
+                    </h2>
+                    {applications.length === 0 ? (
+                        <p className="text-sm text-neutral-600">No applications yet.</p>
+                    ) : (
+                        <div className="flex flex-col gap-4">
+                            {applications.map(app => (
+                                <div
+                                    key={app._id}
+                                    className="bg-neutral-50 rounded-xl border border-neutral-300 p-4 hover:border-neutral-500 hover:shadow-xl hover:scale-101 transition duration-150"
+                                >
+                                    {/* Top row — name + salary */}
+                                    <div className="flex justify-between items-start">
+
+                                        <div className='flex space-x-2'>
+                                            <div className="avatar">
+                                                <div className="w-16 rounded">
+                                                    <img src={app.TutorImage} />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-xl font-semibold text-primary capitalize">{app.name}</h3>
+                                                <p className="text-sm text-neutral-600">{app.email}</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-sm font-bold text-primary">৳{app.expectedSalary}</p>
+                                            <p className="text-sm text-neutral-600">/month</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="divider my-2"></div>
+
+                                    {/* Bottom row — badges */}
+                                    <div className="flex flex-wrap gap-2">
+                                        <span className="badge badge-ghost badge-sm">💼 {app.qualifications}</span>
+                                        <span className="badge badge-ghost badge-sm">🕐 {app.experience}</span>
+                                    </div>
+
+                                    <div className="flex gap-2 mt-3">
+                                        <button className="btn btn-sm hover:bg-primary hover:text-white">
+                                            View Profile
+                                        </button>
+                                        <button className="btn btn-sm hover:bg-primary hover:text-white">
+                                            Accept
+                                        </button>
+                                        <button className="btn btn-sm hover:bg-primary hover:text-white">
+                                            Reject
+                                        </button>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                    <p className="text-sm font-medium text-primary">৳{app.expectedSalary}</p>
-                                    <p className="text-xs text-neutral-400 mt-1">Expected salary</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* ── Apply Modal ── */}
@@ -253,13 +287,18 @@ const TutionDetails = () => {
                     <p className="text-sm text-neutral-500 mb-5">{classGrade} · {district}</p>
 
                     <form onSubmit={handleSubmit(handleApplyNow)} className="flex flex-col gap-4">
+                        <div className="avatar">
+                            <div className="w-16 rounded">
+                                <img src={user?.photoURL} />
+                            </div>
+                        </div>
                         <div>
                             <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Name</label>
                             <input type="text"
                                 {...register("name", { required: "Name is required" })}
                                 defaultValue={user?.displayName || ''}
                                 // readOnly
-                                className="input input-bordered w-full mt-1 bg-neutral-100 cursor-not-allowed" />
+                                className="input input-bordered w-full mt-1 bg-neutral-100" />
                         </div>
                         <div>
                             <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Email</label>
@@ -267,7 +306,7 @@ const TutionDetails = () => {
                                 {...register("email", { required: "Email is required" })}
                                 defaultValue={user?.email || ''}
                                 // readOnly
-                                className="input input-bordered w-full mt-1 bg-neutral-100 cursor-not-allowed" />
+                                className="input input-bordered w-full mt-1 bg-neutral-100" />
                         </div>
                         <div>
                             <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Qualifications</label>
