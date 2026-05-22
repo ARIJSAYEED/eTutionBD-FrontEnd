@@ -13,6 +13,7 @@ import Payments from '../pages/Dashboard/Student/Payments';
 import Tutions from '../pages/Tutions/Tutions';
 import Tutors from '../pages/Tutors/Tutors';
 import TutionDetails from '../pages/Tutions/TutionDetails';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
     {
@@ -26,15 +27,21 @@ const router = createBrowserRouter([
             },
             {
                 path: 'tutions',
-                element: <Tutions></Tutions>,
+                element: <PrivateRoute>
+                    <Tutions></Tutions>
+                </PrivateRoute>
             },
             {
                 path: 'tutions/:tutionId',
-                element: <TutionDetails></TutionDetails>
+                element: <PrivateRoute>
+                    <TutionDetails></TutionDetails>
+                </PrivateRoute>
             },
             {
                 path: 'tutors',
-                element: <Tutors></Tutors>
+                element: <PrivateRoute>
+                    <Tutors></Tutors>
+                </PrivateRoute>
             },
         ]
     },
