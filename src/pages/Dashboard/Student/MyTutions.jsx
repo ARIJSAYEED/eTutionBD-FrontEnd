@@ -12,7 +12,7 @@ const MyTutions = () => {
     // console.log(user)
 
     const { data: tutions = [] } = useQuery({
-        queryKey: ['my-tutions'],
+        queryKey: ['my-tutions', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/tutions?email=${user?.email}`);
             return res.data;

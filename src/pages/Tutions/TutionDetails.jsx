@@ -29,7 +29,8 @@ const TutionDetails = () => {
         }
     });
 
-    // console.log(applications)
+    console.log("tution details", tutionDetails)
+    console.log("applications", applications)
 
     const {
         _id,
@@ -46,13 +47,17 @@ const TutionDetails = () => {
         tutorGender,
         tutorType,
         specialInstructions,
-        createdAt
+        createdAt,
+        studentEmail,
+        studentName,
     } = tutionDetails;
 
     const handleApplyNow = (data) => {
         const applicationData = {
             tutionId: _id,
             classGrade,
+            studentEmail: studentEmail,
+            studentName:studentName,
             TutorImage: user?.photoURL,
             ...data
         };
