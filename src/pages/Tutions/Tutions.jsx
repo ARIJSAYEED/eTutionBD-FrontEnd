@@ -10,7 +10,7 @@ const Tutions = () => {
     const { data: tutions = [] } = useQuery({
         queryKey: ['tutions'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/tutions');
+            const res = await axiosSecure.get(`/tutions?adminApproval=approved`);
             return res.data;
         }
     })

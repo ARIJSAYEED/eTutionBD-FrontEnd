@@ -58,7 +58,7 @@ const TutionDetails = () => {
             classGrade,
             studentEmail: studentEmail,
             studentName:studentName,
-            TutorImage: user?.photoURL,
+            tutorImage: user?.photoURL,
             ...data
         };
 
@@ -245,12 +245,12 @@ const TutionDetails = () => {
                                         <div className='flex space-x-2'>
                                             <div className="avatar">
                                                 <div className="w-16 rounded">
-                                                    <img src={app.TutorImage} />
+                                                    <img src={app.tutorImage} />
                                                 </div>
                                             </div>
                                             <div>
-                                                <h3 className="text-xl font-semibold text-primary capitalize">{app.name}</h3>
-                                                <p className="text-sm text-neutral-600">{app.email}</p>
+                                                <h3 className="text-xl font-semibold text-primary capitalize">{app.tutorName}</h3>
+                                                <p className="text-sm text-neutral-600">{app.tutorEmail}</p>
                                             </div>
                                         </div>
                                         <div className="text-right">
@@ -300,7 +300,7 @@ const TutionDetails = () => {
                         <div>
                             <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Name</label>
                             <input type="text"
-                                {...register("name", { required: "Name is required" })}
+                                {...register("tutorName", { required: "Name is required" })}
                                 defaultValue={user?.displayName || ''}
                                 // readOnly
                                 className="input input-bordered w-full mt-1 bg-neutral-100" />
@@ -308,25 +308,25 @@ const TutionDetails = () => {
                         <div>
                             <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Email</label>
                             <input type="email"
-                                {...register("email", { required: "Email is required" })}
+                                {...register("tutorEmail", { required: "Email is required" })}
                                 defaultValue={user?.email || ''}
                                 // readOnly
                                 className="input input-bordered w-full mt-1 bg-neutral-100" />
                         </div>
                         <div>
-                            <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Qualifications</label>
+                            <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">tutorQualifications</label>
                             <input type="text" {...register("qualifications", { required: "Qualifications is required" })}
                                 placeholder="e.g. BSc in Mathematics" className="input input-bordered w-full mt-1" />
                             {errors.qualifications && <p className="text-red-500 text-xs mt-1">{errors.qualifications.message}</p>}
                         </div>
                         <div>
-                            <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Experience</label>
+                            <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">tutorExperience</label>
                             <input type="text" {...register("experience", { required: "Experience is required" })}
                                 placeholder="e.g. 2 years tutoring SSC students" className="input input-bordered w-full mt-1" />
                             {errors.experience && <p className="text-red-500 text-xs mt-1">{errors.experience.message}</p>}
                         </div>
                         <div>
-                            <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">Expected Salary (৳/month)</label>
+                            <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">tutorsExpected Salary (৳/month)</label>
                             <input type="number" {...register("expectedSalary", { required: "Expected salary is required" })}
                                 placeholder="e.g. 5000" className="input input-bordered w-full mt-1" />
                             {errors.expectedSalary && <p className="text-red-500 text-xs mt-1">{errors.expectedSalary.message}</p>}

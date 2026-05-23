@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../components/shared/Logo';
-import { Link, Outlet } from 'react-router';
-import { MdOutlinePostAdd } from "react-icons/md";
+import { Link, NavLink, Outlet } from 'react-router';
+import { MdOutlinePostAdd, MdPendingActions } from "react-icons/md";
 import { FaChalkboardTeacher, FaClipboardList } from "react-icons/fa";
 import { FiPlusSquare } from 'react-icons/fi';
 import { HiHome, HiMiniWallet } from "react-icons/hi2";
@@ -36,47 +36,55 @@ const Dashboard = () => {
 
                         {/* homepage */}
                         <li>
-                            <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                            <NavLink to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                                 {/* Home icon */}
                                 <HiHome className='text-[16px]'></HiHome>
                                 <span className="is-drawer-close:hidden">Homepage</span>
-                            </Link>
+                            </NavLink>
                         </li>
 
                         {/* my-tutions  */}
                         <li>
-                            <Link to='/dashboard/my-tutions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Tutions">
+                            <NavLink to='/dashboard/my-tutions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Tutions">
                                 {/* icon */}
                                 <FaClipboardList className='text-[16px]'></FaClipboardList>
                                 <span className="is-drawer-close:hidden">My Tutions</span>
-                            </Link>
+                            </NavLink>
                         </li>
 
                         {/* post-new-tutions */}
                         <li>
-                            <Link to='/dashboard/post-new-tution' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post For Tutor">
+                            <NavLink to='/dashboard/post-new-tution' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post For Tutor">
                                 {/* icon */}
                                 <FiPlusSquare className='text-[16px]'></FiPlusSquare>
                                 <span className="is-drawer-close:hidden">Post For Tutor</span>
-                            </Link>
+                            </NavLink>
                         </li>
 
                         {/* applied-tutors  */}
                         <li>
-                            <Link to='/dashboard/applied-tutors' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Applied Tutors">
+                            <NavLink to='/dashboard/applied-tutors' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Applied Tutors">
                                 {/* icon */}
                                 <FaChalkboardTeacher className='text-[16px]'></FaChalkboardTeacher>
                                 <span className="is-drawer-close:hidden">Applied Tutors</span>
-                            </Link>
+                            </NavLink>
                         </li>
 
                         {/* payments  */}
                         <li>
-                            <Link to='/dashboard/payments' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payments">
+                            <NavLink to='/dashboard/payments' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payments">
                                 {/* icon */}
                                 <HiMiniWallet className='text-[16px]'></HiMiniWallet>
                                 <span className="is-drawer-close:hidden">Payments</span>
-                            </Link>
+                            </NavLink>
+                        </li>
+                        {/* Post-Waiting-For-Approval */}
+                        <li>
+                            <NavLink to='/dashboard/post-waiting-for-approval' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post Waiting For Approval">
+                                {/* icon */}
+                                <MdPendingActions  className='text-[16px]'></MdPendingActions>
+                                <span className="is-drawer-close:hidden">Post Waiting For Approval</span>
+                            </NavLink>
                         </li>
 
 

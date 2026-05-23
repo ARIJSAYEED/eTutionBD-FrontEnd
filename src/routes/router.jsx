@@ -14,6 +14,7 @@ import Tutions from '../pages/Tutions/Tutions';
 import Tutors from '../pages/Tutors/Tutors';
 import TutionDetails from '../pages/Tutions/TutionDetails';
 import PrivateRoute from './PrivateRoute';
+import PostWaitingForApproval from '../pages/Dashboard/Admin/PostWaitingForApproval';
 
 const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: 'payments',
                 Component: Payments
+            },
+            {
+                path: 'post-waiting-for-approval',
+                Component: PostWaitingForApproval
             }
         ]
     },

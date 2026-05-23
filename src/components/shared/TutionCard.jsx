@@ -15,6 +15,7 @@ const TutionCard = ({ tution }) => {
         tutoringMode,
         expectedSalary,
         tutionStatus,
+        adminApproval,
         // medium,
         // tutorGender,
         // tutorType,
@@ -36,7 +37,7 @@ const TutionCard = ({ tution }) => {
                             <h2 className="text-[16px] font-semibold">{classGrade}</h2>
                             <p className="text-md text-neutral-600 mt-0.5">📍 {district} · {area}</p>
                         </div>
-                        <span className="badge badge-success badge-soft text-xs">{tutionStatus}</span>
+                        <span className="badge badge-success badge-soft text-xs">{adminApproval}</span>
                     </div>
 
                     <div className="divider my-0"></div>
