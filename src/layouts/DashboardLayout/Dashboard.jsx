@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from '../../components/shared/Logo';
 import { Link, NavLink, Outlet } from 'react-router';
 import { MdOutlinePostAdd, MdPendingActions } from "react-icons/md";
-import { FaChalkboardTeacher, FaClipboardList } from "react-icons/fa";
+import { FaChalkboardTeacher, FaClipboardList, FaUsersCog } from "react-icons/fa";
 import { FiPlusSquare } from 'react-icons/fi';
 import { HiHome, HiMiniWallet } from "react-icons/hi2";
 
@@ -78,12 +78,22 @@ const Dashboard = () => {
                                 <span className="is-drawer-close:hidden">Payments</span>
                             </NavLink>
                         </li>
+
                         {/* Post-Waiting-For-Approval */}
                         <li>
                             <NavLink to='/dashboard/post-waiting-for-approval' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post Waiting For Approval">
                                 {/* icon */}
                                 <MdPendingActions  className='text-[16px]'></MdPendingActions>
                                 <span className="is-drawer-close:hidden">Post Waiting For Approval</span>
+                            </NavLink>
+                        </li>
+
+                        {/* user-management */}
+                        <li>
+                            <NavLink to='/dashboard/user-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Management">
+                                {/* icon */}
+                                <FaUsersCog  className='text-[16px]'></FaUsersCog>
+                                <span className="is-drawer-close:hidden">User Management</span>
                             </NavLink>
                         </li>
 

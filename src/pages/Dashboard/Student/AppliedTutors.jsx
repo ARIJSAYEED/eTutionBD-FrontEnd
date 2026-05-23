@@ -44,7 +44,7 @@ const AppliedTutors = () => {
                         <tr key={i}>
                             <th>{i + 1}</th>
                             <td>
-                                <div className="flex items-center gap-2 justify-center">
+                                <div className="flex items-center gap-2 justify-start">
                                     <div className="avatar">
                                         <div className="w-10 rounded">
                                             <img src={at.tutorImage} alt={at.tutorName} />

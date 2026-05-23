@@ -15,6 +15,7 @@ import Tutors from '../pages/Tutors/Tutors';
 import TutionDetails from '../pages/Tutions/TutionDetails';
 import PrivateRoute from './PrivateRoute';
 import PostWaitingForApproval from '../pages/Dashboard/Admin/PostWaitingForApproval';
+import UserManagement from '../pages/Dashboard/Admin/UserManagement';
 
 const router = createBrowserRouter([
     {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: 'post-waiting-for-approval',
                 Component: PostWaitingForApproval
+            },
+            {
+                path:'user-management',
+                Component: UserManagement
             }
         ]
     },

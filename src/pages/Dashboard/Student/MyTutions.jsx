@@ -2,7 +2,6 @@ import React, { use } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../Context/Auth/AuthContext';
-import TutionCard from '../../../components/shared/TutionCard';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
@@ -10,7 +9,6 @@ const MyTutions = () => {
 
     const { user } = use(AuthContext);
     const axiosSecure = useAxiosSecure()
-    // console.log(user)
 
     const { data: tutions = [], refetch } = useQuery({
         queryKey: ['my-tutions', user?.email],
@@ -20,11 +18,7 @@ const MyTutions = () => {
         }
     })
 
-    console.log(tutions)
-
     const handleDelete = (id) => {
-        console.log("the button was clicked", id)
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -37,7 +31,6 @@ const MyTutions = () => {
             if (result.isConfirmed)
                 axiosSecure.delete(`tutions/${id}`)
                     .then((res) => {
-                        console.log(res)
                         refetch()
                         if (res.data.deletedCount) {
                             Swal.fire({
@@ -51,57 +44,73 @@ const MyTutions = () => {
         });
     }
 
-    return (
-        <>
-            {tutions.length ?
-                <div className="overflow-x-auto *:text-center">
-                    <table className="table table-zebra">
-                        {/* head */}
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Student Name</th>
-                                <th>Gurdians Phone</th>
-                                <th>Class Grade</th>
-                                <th>Salary</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* row 1 */}
-                            {
-                                tutions.map((tution, i) =>
-                                    <tr
-                                        key={i}
-                                        className='hover:bg-primary/15'
-                                    >
-                                        <th>{i + 1}</th>
-                                        <td>{tution.studentName}</td>
-                                        <td>{tution.guardianPhone}</td>
-                                        <td>{tution.classGrade}</td>
-                                        <td>{tution.expectedSalary}</td>
-                                        <td className='space-x-2'>
-                                            <button className="btn btn-primary">Details</button>
-                                            <button
-                                                onClick={() => handleDelete(tution._id)}
-                                                className="btn btn-outline">Delete</button>
-                                        </td>
-                                    </tr>
-                                )
-                            }
+    if (!tutions.length) return (
+        <div className='flex flex-col justify-center items-center space-y-2 mt-20'>
+            <h1 className='text-5xl text-center mt-4'>You haven't posted any tution yet</h1>
+            <Link to='/dashboard/post-new-tution'>
+                <button className="btn btn-primary shadow-none">Post Here</button>
+            </Link>
+        </div>
+    )
 
-                        </tbody>
-                    </table>
-                </div>
-                :
-                <div className='flex flex-col justify-center items-center space-y-2'>
-                    <h1 className='text-5xl text-center mt-4'>You haven't posted any tution yet</h1>
-                    <button className="btn btn-primary shadow-none">
-                        <Link to='/dashboard/post-new-tution'>Post Here</Link>
-                    </button>
-                </div>
-            }
-        </>
+    return (
+        <div className="overflow-x-auto">
+            <table className="table table-zebra text-center">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Student</th>
+                        <th>Class</th>
+                        <th>Location</th>
+                        <th>Schedule</th>
+                        <th>Subjects</th>
+                        <th>Salary</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tutions.map((tution, i) => (
+                        <tr key={tution._id} className='hover:bg-primary/10'>
+                            <th>{i + 1}</th>
+                            <td>
+                                <p className="font-medium">{tution.studentName}</p>
+                                <p className="text-xs text-neutral-400">{tution.guardianPhone}</p>
+                            </td>
+                            <td>
+                                <p>{tution.classGrade}</p>
+                                <p className="text-xs text-neutral-400">{tution.medium}</p>
+                            </td>
+                            <td>
+                                <p>{tution.district}</p>
+                                <p className="text-xs text-neutral-400">{tution.tutoringMode}</p>
+                            </td>
+                            <td>
+                                <p>{tution.daysPerWeek}</p>
+                                <p className="text-xs text-neutral-400">{tution.preferredTime}</p>
+                            </td>
+                            <td className="max-w-32 truncate text-sm">{tution.subjects}</td>
+                            <td className="font-semibold text-primary">৳{tution.expectedSalary}</td>
+                            <td>
+                                <span className={`badge badge-sm ${tution.tutionStatus === 'open' ? 'badge-success' : 'badge-warning'}`}>
+                                    {tution.tutionStatus}
+                                </span>
+                            </td>
+                            <td className='space-x-1'>
+                                <Link to={`/tutions/${tution._id}`}>
+                                    <button className="btn btn-primary btn-sm shadow-none">Details</button>
+                                </Link>
+                                <button
+                                    onClick={() => handleDelete(tution._id)}
+                                    className="btn btn-error btn-sm btn-outline shadow-none">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 };
 
