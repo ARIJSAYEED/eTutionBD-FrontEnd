@@ -16,6 +16,8 @@ import TutionDetails from '../pages/Tutions/TutionDetails';
 import PrivateRoute from './PrivateRoute';
 import PostWaitingForApproval from '../pages/Dashboard/Admin/PostWaitingForApproval';
 import UserManagement from '../pages/Dashboard/Admin/UserManagement';
+import Profile from '../pages/Profile/Profile';
+import TutorDetails from '../pages/Tutors/TutorDetails';
 
 const router = createBrowserRouter([
     {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
                     <Tutors></Tutors>
                 </PrivateRoute>
             },
+            {
+                path: 'profile',
+                Component: Profile
+            },
+            {
+                path:'users/:email',
+                Component: TutorDetails
+            }
         ]
     },
 
@@ -73,7 +83,7 @@ const router = createBrowserRouter([
                 Component: PostWaitingForApproval
             },
             {
-                path:'user-management',
+                path: 'user-management',
                 Component: UserManagement
             }
         ]

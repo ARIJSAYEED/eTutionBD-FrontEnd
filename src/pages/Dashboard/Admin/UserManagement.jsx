@@ -2,13 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import React, { use } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../Context/Auth/AuthContext';
+import Swal from 'sweetalert2';
 
 const UserManagement = () => {
 
     const { user } = use(AuthContext)
     const axiosSecure = useAxiosSecure()
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users`);
@@ -20,9 +21,33 @@ const UserManagement = () => {
         console.log(id)
     }
 
+    // this action deletes user only from database not from firebase, need some research for that
     const handleDelete = (id) => {
-        console.log(id)
-    }
+        // console.log(id)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete this User!"
+        }).then((result) => {
+            if (result.isConfirmed)
+                axiosSecure.delete(`/users/${id}`)
+                    .then((res) => {
+                        refetch()
+                        if (res.data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "The User has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch(err => console.log(err))
+        });
+    };
 
     return (
         <div className="overflow-x-auto">
@@ -64,10 +89,10 @@ const UserManagement = () => {
                             </td>
                             <td className="space-x-1">
                                 <button
-                                onClick={()=>handleMakeAdmin(u._id)} 
-                                className="btn btn-primary btn-sm shadow-none">Make Admin</button>
+                                    onClick={() => handleMakeAdmin(u._id)}
+                                    className="btn btn-primary btn-sm shadow-none">Make Admin</button>
                                 <button
-                                    onClick={()=>handleDelete(u._id)}
+                                    onClick={() => handleDelete(u._id)}
                                     className="btn btn-error btn-sm btn-outline shadow-none">Delete</button>
                             </td>
                         </tr>

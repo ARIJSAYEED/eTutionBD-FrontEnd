@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { use } from "react";
 import { AuthContext } from "../../../Context/Auth/AuthContext";
+import { Link } from "react-router";
 
 const AppliedTutors = () => {
     const { user } = use(AuthContext);
@@ -15,6 +16,8 @@ const AppliedTutors = () => {
         },
         enabled: !!user?.email,
     });
+
+    // console.log(appliedTutors)
 
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
@@ -62,7 +65,9 @@ const AppliedTutors = () => {
                                 <span className="badge badge-warning badge-sm">Pending</span>
                             </td>
                             <td>
-                                <button className="btn btn-primary btn-sm shadow-none">View</button>
+                                <Link 
+                                to={`/users/${at.tutorEmail}`}
+                                className="btn btn-primary btn-sm shadow-none">View Profile</Link>
                             </td>
                         </tr>
                     ))}

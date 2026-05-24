@@ -30,7 +30,9 @@ const TutorCard = ({ tutor }) => {
 
                 <div className="divider my-0 w-full"></div>
 
-                <Link className="btn btn-sm btn-primary w-full">
+                <Link
+                    Link to={`/users/${email}`}
+                    className="btn btn-sm btn-primary w-full">
                     View profile
                     <IoIosArrowForward></IoIosArrowForward>
                 </Link>

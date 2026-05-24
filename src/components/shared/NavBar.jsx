@@ -7,7 +7,9 @@ import { AuthContext } from '../../Context/Auth/AuthContext';
 
 const NavBar = () => {
     const { user, LogOut } = use(AuthContext);
-    console.log(user);
+    
+    // console.log(user?.email);
+
     const links =
         <>
             <li key="1"><NavLink to='/'>Home</NavLink></li>
@@ -44,14 +46,19 @@ const NavBar = () => {
             <div className="navbar-end space-x-2">
                 {
                     user ?
-                        <div className='space-x-2'>
+                        <div className='space-x-2 flex'>
                             <Link onClick={LogOut} className='btn bg-primary text-white'>
                                 SignOut
                             </Link>
-                            <div className="avatar">
-                                <div className="w-10 rounded">
-                                    <img src={user.photoURL} />
-                                </div>
+                            <div>
+                                <Link 
+                                to='/profile'
+                                className="avatar"
+                                >
+                                    <div className="w-10 rounded">
+                                        <img src={user.photoURL} />
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                         :
