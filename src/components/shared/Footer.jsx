@@ -1,91 +1,92 @@
 import React from 'react';
-import Logo from './Logo';
 import { FaFacebookF, FaLinkedinIn, FaPhoneAlt, FaTiktok } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { MdArrowForwardIos, MdMarkEmailRead } from "react-icons/md";
 
-
-
 const Footer = () => {
     return (
-        <footer className="bg-primary p-10 space-y-20 rounded-sm">
+        <footer className="bg-primary text-primary-content px-10 py-12 space-y-10">
 
-            {/* first-section */}
-            <div className='grid grid-cols-2 gap-10'>
-                <div className='text-white space-y-2'>
-                    <h1 className='text-6xl font-semibold'>eTutionBD</h1>
-                    <p className='text-neutral-300 text-base capitalize'>we are here to find you the best tution oppurtunity/the best tutor in your area that full fill your requirement and to help you grow</p>
+            {/* Top Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                    <h1 className="text-5xl font-bold">eTutionBD</h1>
+                    <p className="text-primary-content/60 text-sm max-w-sm">
+                        Connecting students with the best tutors across Bangladesh — tailored to your needs and location.
+                    </p>
                 </div>
-                <div className='flex flex-col items-end justify-end space-y-2'>
-                    <h1 className='text-3xl text-white'>Get In Touch</h1>
-                    <label className='label'>
+                <div className="flex flex-col sm:items-end justify-center space-y-2">
+                    <p className="text-lg font-semibold">Get In Touch</p>
+                    <div className="flex items-center border border-primary-content/30 rounded-lg overflow-hidden">
                         <input
-                            className='input placeholder:text-base'
                             type="email"
-                            placeholder='Enter your email' />
-                        <button className='btn shadow-none'>
-                            <MdArrowForwardIos className='text-primary text-2xl'></MdArrowForwardIos>
+                            placeholder="Enter your email"
+                            className="bg-transparent px-4 py-2 text-sm outline-none placeholder:text-primary-content/40 w-56"
+                        />
+                        <button className="bg-primary-content text-primary px-3 py-2 hover:opacity-90 transition-opacity">
+                            <MdArrowForwardIos size={16} />
                         </button>
-                    </label>
-                </div>
-            </div>
-
-            {/* second-section */}
-            <div className='grid grid-cols-4 gap-4 '>
-                <div className='space-y-2'>
-                    <div className='bg-white rounded-sm px-2'>
-                        <h1 className='uppercase text-sm font-semibold text-primary'>Contact Infromation</h1>
-                    </div>
-                    <div className=''>
-
-                        {/* email */}
-                        <div className='flex items-center text-sm gap-1 text-white'>
-                            <MdMarkEmailRead className='text-xl'></MdMarkEmailRead>
-                            <p className='text-neutral-300'>etution@bd.com</p>
-                        </div>
-
-                        {/* phone */}
-                        <div className='flex items-center text-sm gap-1 text-white'>
-                            <FaPhoneAlt className='text-base'></FaPhoneAlt>
-                            <p className='text-neutral-300'>+880-1234-567891</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className='bg-white rounded-sm px-2'>
-                        <h1 className='uppercase text-sm font-semibold text-primary'>Quick Links</h1>
-                    </div>
-                </div>
-                <div>
-                    <div className='bg-white rounded-sm px-2'>
-                        <h1 className='uppercase text-sm font-semibold text-primary'>Help</h1>
-                    </div>
-
-                </div>
-                <div className='space-y-2'>
-                    <div className='bg-white rounded-sm px-2'>
-                        <h1 className='uppercase text-sm font-semibold text-primary'>Follow Us</h1>
-                    </div>
-                    <div className='flex justify-between gap-1 *:border'>
-                        <div className='p-2 text-xl cursor-pointer rounded-sm flex justify-center items-center bg-white text-primary'>
-                            <FaFacebookF></FaFacebookF>
-                        </div>
-                        <div className='p-2 text-xl cursor-pointer rounded-sm flex justify-center items-center bg-white text-primary'>
-                            <FaXTwitter></FaXTwitter>
-                        </div>
-                        <div className='p-2 text-xl cursor-pointer rounded-sm flex justify-center items-center bg-white text-primary'>
-                            <FaTiktok></FaTiktok>
-                        </div>
-                        <div className='p-2 text-xl cursor-pointer rounded-sm flex justify-center items-center bg-white text-primary'>
-                            <FaLinkedinIn></FaLinkedinIn>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className='space-y-4'>
-                <div className='border-t border-neutral-400'></div>
-                <p className='text-sm tracking-wide text-white text-center'>© 2026, eTutionBD, All Rights Reserved.</p>
+            <div className="border-t border-primary-content/20" />
+
+            {/* Bottom Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+
+                {/* Contact */}
+                <div className="space-y-3">
+                    <div className="bg-primary-content rounded-sm px-2 py-0.5 inline-block">
+                        <h3 className="text-xs uppercase font-semibold text-primary">Contact Information</h3>
+                    </div>
+                    <div className="space-y-2 text-sm text-primary-content/80">
+                        <p className="flex items-center gap-2"><MdMarkEmailRead size={16} /> etution@bd.com</p>
+                        <p className="flex items-center gap-2"><FaPhoneAlt size={13} /> +880-1234-567891</p>
+                    </div>
+                </div>
+
+                {/* Quick Links */}
+                <div className="space-y-3">
+                    <div className="bg-primary-content rounded-sm px-2 py-0.5 inline-block">
+                        <h3 className="text-xs uppercase font-semibold text-primary">Quick Links</h3>
+                    </div>
+                    <ul className="space-y-1.5 text-sm text-primary-content/80">
+                        <li><a href="/" className="hover:text-primary-content transition-colors">Home</a></li>
+                        <li><a href="/tutions" className="hover:text-primary-content transition-colors">Tuitions</a></li>
+                        <li><a href="/tutors" className="hover:text-primary-content transition-colors">Tutors</a></li>
+                        <li><a href="/about" className="hover:text-primary-content transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+
+                {/* Help */}
+                <div className="space-y-3">
+                    <div className="bg-primary-content rounded-sm px-2 py-0.5 inline-block">
+                        <h3 className="text-xs uppercase font-semibold text-primary">Help</h3>
+                    </div>
+                    <ul className="space-y-1.5 text-sm text-primary-content/80">
+                        <li><a href="/faq" className="hover:text-primary-content transition-colors">FAQ</a></li>
+                        <li><a href="/privacy" className="hover:text-primary-content transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms" className="hover:text-primary-content transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                {/* Follow Us */}
+                <div className="space-y-3">
+                    <div className="bg-primary-content rounded-sm px-2 py-0.5 inline-block">
+                        <h3 className="text-xs uppercase font-semibold text-primary">Follow Us</h3>
+                    </div>
+                    <div className="flex gap-2">
+                        <div className="p-2 cursor-pointer rounded-sm bg-primary-content text-primary hover:opacity-80 transition-opacity"><FaFacebookF size={16} /></div>
+                        <div className="p-2 cursor-pointer rounded-sm bg-primary-content text-primary hover:opacity-80 transition-opacity"><FaXTwitter size={16} /></div>
+                        <div className="p-2 cursor-pointer rounded-sm bg-primary-content text-primary hover:opacity-80 transition-opacity"><FaTiktok size={16} /></div>
+                        <div className="p-2 cursor-pointer rounded-sm bg-primary-content text-primary hover:opacity-80 transition-opacity"><FaLinkedinIn size={16} /></div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="border-t border-primary-content/20 pt-4 text-center text-xs text-primary-content/50">
+                © 2026 eTutionBD. All Rights Reserved.
             </div>
         </footer>
     );

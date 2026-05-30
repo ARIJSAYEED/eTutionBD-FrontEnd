@@ -3,10 +3,9 @@ import React from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import TutionCard from '../../components/shared/TutionCard';
 import { IoIosArrowForward } from "react-icons/io";
-
+import { FiBookOpen } from 'react-icons/fi';
 
 const LatestTuition = () => {
-
     const axiosSecure = useAxiosSecure();
 
     const { data: tutions = [] } = useQuery({
@@ -15,31 +14,57 @@ const LatestTuition = () => {
             const res = await axiosSecure.get(`/tutions?adminApproval=approved`);
             return res.data;
         }
-    })
-
-    // const latestTutions = tutions.slice(-4).reverse(); // ← trim to 4
-
-
-    // console.log("latest tution post from home page", tutions);
+    });
 
     return (
-        <div className='space-y-4'>
-            <div className='flex justify-between items-center'>
-                <div>
-                    <h1 className='text-4xl font-semibold text-primary'>Latest Tutions</h1>
+        <section className="py-10 px-4">
+
+            {/* Section Header */}
+            <div className="flex justify-between items-end mb-2">
+                <div className="flex items-center gap-3">
+                    <div className="bg-primary/10 text-primary p-2 rounded-sm">
+                        <FiBookOpen size={20} />
+                    </div>
+                    <div>
+                        <p className="text-xs text-base-content/40 uppercase tracking-widest font-medium mb-0.5">Freshly Added</p>
+                        <h2 className="text-2xl font-bold text-base-content">Latest Tuitions</h2>
+                    </div>
                 </div>
-                <div className='btn flex items-center'>
-                    <a href='/tutions' >Explore More</a> 
-                    <span><IoIosArrowForward></IoIosArrowForward> </span>
+
+                <a href="/tutions" className="btn btn-outline btn-primary btn-sm gap-1 rounded-xl">
+                    Explore More
+                    <IoIosArrowForward size={15} />
+                </a>
+            </div>
+
+            {/* Divider */}
+            <div className="border-b border-base-300 mb-6 mt-4" />
+
+            {/* Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                {tutions.map((tution, i) => (
+                    <TutionCard key={i} tution={tution} />
+                ))}
+            </div>
+
+            {/* Empty State */}
+            {tutions.length === 0 && (
+                <div className="text-center py-16">
+                    <p className="text-4xl mb-3">📚</p>
+                    <p className="text-base-content/50 text-sm">No tuitions available right now.</p>
                 </div>
-            </div>
-            <div className='divider'></div>
-            <div className='grid grid-cols-4 gap-4'>
-                {
-                    tutions.map((tution, i) => <TutionCard key={i} tution={tution}></TutionCard>)
-                }
-            </div>
-        </div>
+            )}
+
+            {/* Bottom CTA */}
+            {tutions.length > 0 && (
+                <div className="text-center mt-8">
+                    <a href="/tutions" className="btn btn-primary btn-wide gap-2 rounded-xl">
+                        View All Tuitions
+                        <IoIosArrowForward size={16} />
+                    </a>
+                </div>
+            )}
+        </section>
     );
 };
 

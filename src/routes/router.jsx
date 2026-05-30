@@ -31,9 +31,9 @@ const router = createBrowserRouter([
             },
             {
                 path: 'tutions',
-                element: <PrivateRoute>
+                element: 
                     <Tutions></Tutions>
-                </PrivateRoute>
+                
             },
             {
                 path: 'tutions/:tutionId',
@@ -43,9 +43,9 @@ const router = createBrowserRouter([
             },
             {
                 path: 'tutors',
-                element: <PrivateRoute>
+                element: 
                     <Tutors></Tutors>
-                </PrivateRoute>
+                
             },
             {
                 path: 'profile',
