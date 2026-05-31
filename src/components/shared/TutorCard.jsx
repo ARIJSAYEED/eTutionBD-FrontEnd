@@ -6,7 +6,7 @@ const TutorCard = ({ tutor }) => {
     const { _id, name, email, image } = tutor;
 
     return (
-        <div className="card border border-neutral-300 hover:border-neutral-500 hover:shadow-xl hover:scale-105 transition duration-150">
+        <div className="card border border-neutral-200 hover:border-primary hover:shadow-xl hover:scale-105 transition duration-150">
             <div className="card-body items-center text-center gap-3 p-5">
 
                 {/* Profile picture */}

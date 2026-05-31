@@ -7,7 +7,7 @@ import { FiSearch, FiFilter, FiBookOpen } from 'react-icons/fi';
 const Tutions = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: tutions = [] } = useQuery({
+    const { data: tutions = [],isLoading } = useQuery({
         queryKey: ['tutions'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/tutions?adminApproval=approved`);
@@ -15,8 +15,16 @@ const Tutions = () => {
         }
     });
 
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
+    }
+
     return (
-        <div className="min-h-screen bg-base-200 px-6 py-10">
+        <div className="bg-base-200 px-6 py-10">
 
             {/* Header */}
             <div className="max-w-7xl mx-auto mb-10">

@@ -5,7 +5,7 @@ import { MdArrowForwardIos, MdMarkEmailRead } from "react-icons/md";
 
 const Footer = () => {
     return (
-        <footer className="bg-primary text-primary-content px-10 py-12 space-y-10">
+        <footer className="bg-primary text-primary-content px-10 py-12 space-y-10 rounded-sm">
 
             {/* Top Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

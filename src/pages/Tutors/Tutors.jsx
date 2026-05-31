@@ -7,7 +7,7 @@ import { FiSearch, FiUsers, FiStar, FiFilter } from 'react-icons/fi';
 const Tutors = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: tutors = [] } = useQuery({
+    const { data: tutors = [], isLoading } = useQuery({
         queryKey: ['tutions'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users?role=tutor');
@@ -15,8 +15,16 @@ const Tutors = () => {
         }
     });
 
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
+    }
+
     return (
-        <div className="min-h-screen bg-base-200 px-6 py-10">
+        <div className="bg-base-200 px-6 py-10">
 
             {/* Header */}
             <div className="max-w-7xl mx-auto mb-10">
@@ -74,7 +82,8 @@ const Tutors = () => {
                     </select>
 
                     {/* Filter Button */}
-                    <button className="btn btn-secondary gap-2 w-full sm:w-auto">
+                    <button c
+                        lassName="btn btn-secondary gap-2 w-full sm:w-auto">
                         <FiFilter size={16} />
                         Filter
                     </button>

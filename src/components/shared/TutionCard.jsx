@@ -27,7 +27,7 @@ const TutionCard = ({ tution }) => {
     return (
         <>
             {/* ——— Card ——— */}
-            <div className="card border border-neutral-200 hover:border-neutral-400 hover:shadow-xl hover:scale-105 transition duration-150">
+            <div className="card border border-neutral-200 hover:border-primary hover:shadow-xl hover:scale-105 transition duration-150">
                 <div className="card-body gap-3">
 
                     {/* Top */}

@@ -8,13 +8,21 @@ import { FiBookOpen } from 'react-icons/fi';
 const LatestTuition = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: tutions = [] } = useQuery({
+    const { data: tutions = [], isLoading } = useQuery({
         queryKey: ['latest-tutions'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/tutions?adminApproval=approved`);
             return res.data;
         }
     });
+    
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
+    }
 
     return (
         <section className="py-10 px-4">

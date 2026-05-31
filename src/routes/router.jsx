@@ -18,6 +18,8 @@ import PostWaitingForApproval from '../pages/Dashboard/Admin/PostWaitingForAppro
 import UserManagement from '../pages/Dashboard/Admin/UserManagement';
 import Profile from '../pages/Profile/Profile';
 import TutorDetails from '../pages/Tutors/TutorDetails';
+import About from '../pages/About/About';
+import Contact from '../pages/Contact/Contact';
 
 const router = createBrowserRouter([
     {
@@ -31,9 +33,9 @@ const router = createBrowserRouter([
             },
             {
                 path: 'tutions',
-                element: 
+                element:
                     <Tutions></Tutions>
-                
+
             },
             {
                 path: 'tutions/:tutionId',
@@ -43,16 +45,24 @@ const router = createBrowserRouter([
             },
             {
                 path: 'tutors',
-                element: 
+                element:
                     <Tutors></Tutors>
-                
+
+            },
+            {
+                path: 'about',
+                element: <About></About>
+            },
+            {
+                path:'contact',
+                element:<Contact></Contact>
             },
             {
                 path: 'profile',
                 Component: Profile
             },
             {
-                path:'users/:email',
+                path: 'users/:email',
                 Component: TutorDetails
             }
         ]

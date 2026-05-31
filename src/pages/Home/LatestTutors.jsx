@@ -8,13 +8,21 @@ import { FiUsers } from 'react-icons/fi';
 const LatestTutors = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: tutors = [] } = useQuery({
+    const { data: tutors = [], isLoading } = useQuery({
         queryKey: ['latest-tutors'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users?role=tutor');
             return res.data;
         }
     });
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
+    }
 
     return (
         <section className="py-10 px-4">
