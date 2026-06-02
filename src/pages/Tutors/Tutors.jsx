@@ -8,7 +8,7 @@ const Tutors = () => {
     const axiosSecure = useAxiosSecure();
 
     const { data: tutors = [], isLoading } = useQuery({
-        queryKey: ['tutions'],
+        queryKey: ['tuitions'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users?role=tutor');
             return res.data;

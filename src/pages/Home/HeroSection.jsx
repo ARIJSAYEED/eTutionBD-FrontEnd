@@ -10,14 +10,14 @@ const HeroSection = () => {
         <div className='flex items-center'>
             <div className='w-1/2 space-y-4'>
                 <h1 className='text-5xl font-semibold capitalize'>getting <span className='text-primary'>quality</span><br />education is now<br />more <span className='text-primary'>easy</span></h1>
-                <p className='text-md text-neutral-600 capitalize'>we are here to find you the best tution oppurtunity/the best tutor in your area that full fill your requirement and to help you grow</p>
+                <p className='text-md text-neutral-600 capitalize'>we are here to find you the best tuition oppurtunity/the best tutor in your area that full fill your requirement and to help you grow</p>
                 <div className='space-x-2'>
                     {
                         user ?
                             "" :
                             <Link to="/auth/register" className="btn btn-primary">Get Started</Link>
                     }
-                    <button className="btn">Explore Tutions</button>
+                    <button className="btn">Explore tuitions</button>
                 </div>
             </div>
             <div className='w-1/2'>

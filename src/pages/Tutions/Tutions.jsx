@@ -1,16 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import TutionCard from '../../components/shared/TutionCard';
+// import tuitionCard from '../../components/shared/tuitionCard';
 import { FiSearch, FiFilter, FiBookOpen } from 'react-icons/fi';
+import TuitionCard from '../../components/shared/TutionCard';
 
-const Tutions = () => {
+const Tuitions = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: tutions = [],isLoading } = useQuery({
-        queryKey: ['tutions'],
+    const { data: tuitions = [], isLoading } = useQuery({
+        queryKey: ['tuitions'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/tutions?adminApproval=approved`);
+            const res = await axiosSecure.get(`/tuitions?adminApproval=approved`);
             return res.data;
         }
     });
@@ -81,19 +82,19 @@ const Tutions = () => {
             {/* Results Count */}
             <div className="max-w-7xl mx-auto mb-4">
                 <p className="text-sm text-base-content/50">
-                    Showing <span className="font-semibold text-base-content">{tutions.length}</span> tuitions
+                    Showing <span className="font-semibold text-base-content">{tuitions.length}</span> tuitions
                 </p>
             </div>
 
             {/* Tuition Cards Grid */}
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                {tutions.map((tution, i) => (
-                    <TutionCard key={i} tution={tution} />
+                {tuitions.map((tuition, i) => (
+                    <TuitionCard key={i} tuition={tuition} />
                 ))}
             </div>
 
             {/* Empty State */}
-            {tutions.length === 0 && (
+            {tuitions.length === 0 && (
                 <div className="max-w-7xl mx-auto text-center py-24">
                     <div className="text-6xl mb-4">📚</div>
                     <h3 className="text-xl font-semibold text-base-content mb-1">No tuitions found</h3>
@@ -104,4 +105,4 @@ const Tutions = () => {
     );
 };
 
-export default Tutions;
+export default Tuitions;

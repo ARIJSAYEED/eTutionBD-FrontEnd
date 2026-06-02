@@ -1,21 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import TutionCard from '../../components/shared/TutionCard';
+// import TuitionCard from '../../components/shared/tuitionCard';
 import { IoIosArrowForward } from "react-icons/io";
 import { FiBookOpen } from 'react-icons/fi';
+import TuitionCard from '../../components/shared/TutionCard';
 
 const LatestTuition = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: tutions = [], isLoading } = useQuery({
-        queryKey: ['latest-tutions'],
+    const { data: tuitions = [], isLoading } = useQuery({
+        queryKey: ['latest-tuitions'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/tutions?adminApproval=approved`);
+            const res = await axiosSecure.get(`/tuitions?adminApproval=approved`);
             return res.data;
         }
     });
-    
+
     if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -39,7 +40,7 @@ const LatestTuition = () => {
                     </div>
                 </div>
 
-                <a href="/tutions" className="btn btn-outline btn-primary btn-sm gap-1 rounded-xl">
+                <a href="/tuitions" className="btn btn-outline btn-primary btn-sm gap-1 rounded-xl">
                     Explore More
                     <IoIosArrowForward size={15} />
                 </a>
@@ -50,13 +51,13 @@ const LatestTuition = () => {
 
             {/* Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                {tutions.map((tution, i) => (
-                    <TutionCard key={i} tution={tution} />
+                {tuitions.map((tuition, i) => (
+                    <TuitionCard key={i} tuition={tuition} />
                 ))}
             </div>
 
             {/* Empty State */}
-            {tutions.length === 0 && (
+            {tuitions.length === 0 && (
                 <div className="text-center py-16">
                     <p className="text-4xl mb-3">📚</p>
                     <p className="text-base-content/50 text-sm">No tuitions available right now.</p>
@@ -64,9 +65,9 @@ const LatestTuition = () => {
             )}
 
             {/* Bottom CTA */}
-            {tutions.length > 0 && (
+            {tuitions.length > 0 && (
                 <div className="text-center mt-8">
-                    <a href="/tutions" className="btn btn-primary btn-wide gap-2 rounded-xl">
+                    <a href="/tuitions" className="btn btn-primary btn-wide gap-2 rounded-xl">
                         View All Tuitions
                         <IoIosArrowForward size={16} />
                     </a>

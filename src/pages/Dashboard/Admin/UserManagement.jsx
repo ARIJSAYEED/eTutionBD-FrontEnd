@@ -9,13 +9,23 @@ const UserManagement = () => {
     const { user } = use(AuthContext)
     const axiosSecure = useAxiosSecure()
 
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users`);
             return res.data;
         }
     })
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
+    }
+
+    // console.log(users)
 
     const handleMakeAdmin = (id) => {
         console.log(id)

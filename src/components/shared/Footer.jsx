@@ -10,7 +10,7 @@ const Footer = () => {
             {/* Top Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                    <h1 className="text-5xl font-bold">eTutionBD</h1>
+                    <h1 className="text-5xl font-bold">etuitionBD</h1>
                     <p className="text-primary-content/60 text-sm max-w-sm">
                         Connecting students with the best tutors across Bangladesh — tailored to your needs and location.
                     </p>
@@ -41,7 +41,7 @@ const Footer = () => {
                         <h3 className="text-xs uppercase font-semibold text-primary">Contact Information</h3>
                     </div>
                     <div className="space-y-2 text-sm text-primary-content/80">
-                        <p className="flex items-center gap-2"><MdMarkEmailRead size={16} /> etution@bd.com</p>
+                        <p className="flex items-center gap-2"><MdMarkEmailRead size={16} /> etuition@bd.com</p>
                         <p className="flex items-center gap-2"><FaPhoneAlt size={13} /> +880-1234-567891</p>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ const Footer = () => {
                     </div>
                     <ul className="space-y-1.5 text-sm text-primary-content/80">
                         <li><a href="/" className="hover:text-primary-content transition-colors">Home</a></li>
-                        <li><a href="/tutions" className="hover:text-primary-content transition-colors">Tuitions</a></li>
+                        <li><a href="/tuitions" className="hover:text-primary-content transition-colors">Tuitions</a></li>
                         <li><a href="/tutors" className="hover:text-primary-content transition-colors">Tutors</a></li>
                         <li><a href="/about" className="hover:text-primary-content transition-colors">About Us</a></li>
                     </ul>
@@ -86,7 +86,7 @@ const Footer = () => {
             </div>
 
             <div className="border-t border-primary-content/20 pt-4 text-center text-xs text-primary-content/50">
-                © 2026 eTutionBD. All Rights Reserved.
+                © 2026 etuitionBD. All Rights Reserved.
             </div>
         </footer>
     );

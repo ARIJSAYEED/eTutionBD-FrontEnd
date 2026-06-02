@@ -9,27 +9,27 @@ import Swal from 'sweetalert2';
 const TutionDetails = () => {
 
     const { user } = use(AuthContext);
-    const { tutionId } = useParams();
+    const { tuitionId } = useParams();
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const { data: tutionDetails = {}, isLoading } = useQuery({
-        queryKey: ['tution-details', tutionId],
+    const { data: tuitionDetails = {}, isLoading } = useQuery({
+        queryKey: ['tuition-details', tuitionId],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/tutions/${tutionId}`);
+            const res = await axiosSecure.get(`/tuitions/${tuitionId}`);
             return res.data;
         }
     });
 
     const { data: applications = [], refetch } = useQuery({
-        queryKey: ['tution-applications', tutionId],
+        queryKey: ['tuition-applications', tuitionId],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/tutionApplications?tutionId=${tutionId}`);
+            const res = await axiosSecure.get(`/tuitionApplications?tuitionId=${tuitionId}`);
             return res.data;
         }
     });
 
-    console.log("tution details", tutionDetails)
+    console.log("tuition details", tuitionDetails)
     console.log("applications", applications)
 
     const {
@@ -42,7 +42,7 @@ const TutionDetails = () => {
         preferredTime,
         tutoringMode,
         expectedSalary,
-        tutionStatus,
+        tuitionStatus,
         medium,
         tutorGender,
         tutorType,
@@ -50,21 +50,21 @@ const TutionDetails = () => {
         createdAt,
         studentEmail,
         studentName,
-    } = tutionDetails;
+    } = tuitionDetails;
 
     const handleApplyNow = (data) => {
         const applicationData = {
-            tutionId: _id,
+            tuitionId: _id,
             classGrade,
             studentEmail: studentEmail,
-            studentName:studentName,
+            studentName: studentName,
             tutorImage: user?.photoURL,
             ...data
         };
 
         // console.log("Application Submitted:", applicationData);
 
-        axiosSecure.post('/tutionApplications', applicationData)
+        axiosSecure.post('/tuitionApplications', applicationData)
             .then((res) => {
                 console.log(res)
                 refetch()
@@ -82,6 +82,19 @@ const TutionDetails = () => {
 
         document.getElementById(`apply_modal_${_id}`).close();
     };
+
+    const handleAccept = async () => {
+        // console.log("the button was clicked")
+        const paymentInfo = {
+            expectedSalary: expectedSalary,
+            tuitionId: _id,
+            studentEmail: studentEmail,
+            classGrade: classGrade,
+        }
+        const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
+        console.log(res.data)
+        window.location.assign(res.data.url)
+    }
 
     if (isLoading) return (
         <div className="min-h-screen flex items-center justify-center">
@@ -101,7 +114,7 @@ const TutionDetails = () => {
                                 <div>
                                     <div className="flex items-center gap-3 mb-2">
                                         <h1 className="text-3xl font-bold text-neutral-800">{classGrade}</h1>
-                                        <span className="badge badge-success badge-soft">{tutionStatus}</span>
+                                        <span className="badge badge-success badge-soft">{tuitionStatus}</span>
                                     </div>
                                     <p className="text-neutral-500 text-base">📍 {district}, {area}</p>
                                     <p className="text-xs text-neutral-400 mt-1">
@@ -271,8 +284,8 @@ const TutionDetails = () => {
                                         <button className="btn btn-sm hover:bg-primary hover:text-white">
                                             View Profile
                                         </button>
-                                        <button className="btn btn-sm hover:bg-primary hover:text-white">
-                                            Accept
+                                        <button onClick={handleAccept} className="btn btn-sm hover:bg-primary hover:text-white">
+                                            Accept & Pay
                                         </button>
                                         <button className="btn btn-sm hover:bg-primary hover:text-white">
                                             Reject
@@ -288,7 +301,7 @@ const TutionDetails = () => {
             {/* ── Apply Modal ── */}
             <dialog id={`apply_modal_${_id}`} className="modal">
                 <div className="modal-box max-w-md">
-                    <h3 className="text-lg font-semibold mb-1">Apply for Tuition</h3>
+                    <h3 className="text-lg font-semibold mb-1">Apply for Tution</h3>
                     <p className="text-sm text-neutral-500 mb-5">{classGrade} · {district}</p>
 
                     <form onSubmit={handleSubmit(handleApplyNow)} className="flex flex-col gap-4">

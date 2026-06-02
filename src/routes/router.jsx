@@ -6,13 +6,13 @@ import SignIn from '../pages/SignIn/SignIn';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Dashboard from '../layouts/DashboardLayout/Dashboard';
-import PostNewTution from '../pages/Dashboard/Student/PostNewTution';
-import MyTutions from '../pages/Dashboard/Student/MyTutions';
+// import PostNewtuition from '../pages/Dashboard/Student/PostNewtuition';
+// import Mytuitions from '../pages/Dashboard/Student/Mytuitions';
 import AppliedTutors from '../pages/Dashboard/Student/AppliedTutors';
 import Payments from '../pages/Dashboard/Student/Payments';
-import Tutions from '../pages/Tutions/Tutions';
+// import Tuitions from '../pages/tuitions/tuitions';
 import Tutors from '../pages/Tutors/Tutors';
-import TutionDetails from '../pages/Tutions/TutionDetails';
+// import TuitionDetails from '../pages/tuitions/tuitionDetails';
 import PrivateRoute from './PrivateRoute';
 import PostWaitingForApproval from '../pages/Dashboard/Admin/PostWaitingForApproval';
 import UserManagement from '../pages/Dashboard/Admin/UserManagement';
@@ -20,6 +20,12 @@ import Profile from '../pages/Profile/Profile';
 import TutorDetails from '../pages/Tutors/TutorDetails';
 import About from '../pages/About/About';
 import Contact from '../pages/Contact/Contact';
+import PostNewTuition from '../pages/Dashboard/Student/PostNewTution';
+import MyTuitions from '../pages/Dashboard/Student/MyTutions';
+import Tuitions from '../pages/Tutions/Tutions';
+import TutionDetails from '../pages/Tutions/TutionDetails';
+import PaymentS from '../pages/Dashboard/Payment/PaymentS';
+import PaymentC from '../pages/Dashboard/Payment/PaymentC';
 
 const router = createBrowserRouter([
     {
@@ -32,13 +38,13 @@ const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path: 'tutions',
+                path: 'tuitions',
                 element:
-                    <Tutions></Tutions>
+                    <Tuitions></Tuitions>
 
             },
             {
-                path: 'tutions/:tutionId',
+                path: 'tuitions/:tuitionId',
                 element: <PrivateRoute>
                     <TutionDetails></TutionDetails>
                 </PrivateRoute>
@@ -54,8 +60,8 @@ const router = createBrowserRouter([
                 element: <About></About>
             },
             {
-                path:'contact',
-                element:<Contact></Contact>
+                path: 'contact',
+                element: <Contact></Contact>
             },
             {
                 path: 'profile',
@@ -73,12 +79,12 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
             {
-                path: 'my-tutions',
-                Component: MyTutions
+                path: 'my-tuitions',
+                Component: MyTuitions
             },
             {
-                path: 'post-new-tution',
-                Component: PostNewTution
+                path: 'post-new-tuition',
+                Component: PostNewTuition
             },
             {
                 path: 'applied-tutors',
@@ -95,6 +101,14 @@ const router = createBrowserRouter([
             {
                 path: 'user-management',
                 Component: UserManagement
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentS
+            },
+            {
+                path: 'payment-cancel',
+                Component: PaymentC
             }
         ]
     },

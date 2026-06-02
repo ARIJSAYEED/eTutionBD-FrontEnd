@@ -5,18 +5,27 @@ import { AuthContext } from '../../../Context/Auth/AuthContext';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
-const MyTutions = () => {
+const MyTuitions = () => {
 
     const { user } = use(AuthContext);
     const axiosSecure = useAxiosSecure()
+    console.log("user from my tutions", user?.email)
 
-    const { data: tutions = [], refetch } = useQuery({
-        queryKey: ['my-tutions', user?.email],
+    const { data: tuitions = [], refetch, isLoading } = useQuery({
+        queryKey: ['my-tuitions', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/tutions?email=${user?.email}&adminApproval=approved`);
+            const res = await axiosSecure.get(`/tuitions?email=${user?.email}&adminApproval=approved`);
             return res.data;
         }
     })
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
+    }
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -26,10 +35,10 @@ const MyTutions = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete this tution post!"
+            confirmButtonText: "Yes, delete this tuition post!"
         }).then((result) => {
             if (result.isConfirmed)
-                axiosSecure.delete(`tutions/${id}`)
+                axiosSecure.delete(`tuitions/${id}`)
                     .then((res) => {
                         refetch()
                         if (res.data.deletedCount) {
@@ -44,10 +53,10 @@ const MyTutions = () => {
         });
     }
 
-    if (!tutions.length) return (
+    if (!tuitions.length) return (
         <div className='flex flex-col justify-center items-center space-y-2 mt-20'>
-            <h1 className='text-5xl text-center mt-4'>You haven't posted any tution yet</h1>
-            <Link to='/dashboard/post-new-tution'>
+            <h1 className='text-5xl text-center mt-4'>You haven't posted any tuition yet</h1>
+            <Link to='/dashboard/post-new-tuition'>
                 <button className="btn btn-primary shadow-none">Post Here</button>
             </Link>
         </div>
@@ -65,43 +74,45 @@ const MyTutions = () => {
                         <th>Schedule</th>
                         <th>Subjects</th>
                         <th>Salary</th>
+                        <th>Payment Status</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {tutions.map((tution, i) => (
-                        <tr key={tution._id} className='hover:bg-primary/10'>
+                    {tuitions.map((tuition, i) => (
+                        <tr key={tuition._id} className='hover:bg-primary/10'>
                             <th>{i + 1}</th>
                             <td>
-                                <p className="font-medium">{tution.studentName}</p>
-                                <p className="text-xs text-neutral-400">{tution.guardianPhone}</p>
+                                <p className="font-medium">{tuition.studentName}</p>
+                                <p className="text-xs text-neutral-400">{tuition.guardianPhone}</p>
                             </td>
                             <td>
-                                <p>{tution.classGrade}</p>
-                                <p className="text-xs text-neutral-400">{tution.medium}</p>
+                                <p>{tuition.classGrade}</p>
+                                <p className="text-xs text-neutral-400">{tuition.medium}</p>
                             </td>
                             <td>
-                                <p>{tution.district}</p>
-                                <p className="text-xs text-neutral-400">{tution.tutoringMode}</p>
+                                <p>{tuition.district}</p>
+                                <p className="text-xs text-neutral-400">{tuition.tutoringMode}</p>
                             </td>
                             <td>
-                                <p>{tution.daysPerWeek}</p>
-                                <p className="text-xs text-neutral-400">{tution.preferredTime}</p>
+                                <p>{tuition.daysPerWeek}</p>
+                                <p className="text-xs text-neutral-400">{tuition.preferredTime}</p>
                             </td>
-                            <td className="max-w-32 truncate text-sm">{tution.subjects}</td>
-                            <td className="font-semibold text-primary">৳{tution.expectedSalary}</td>
+                            <td className="max-w-32 truncate text-sm">{tuition.subjects}</td>
+                            <td className="font-semibold text-primary">৳{tuition.expectedSalary}</td>
+                            <td className="font-semibold text-primary">{tuition.paymentStatus}</td>
                             <td>
-                                <span className={`badge badge-sm ${tution.tutionStatus === 'open' ? 'badge-success' : 'badge-warning'}`}>
-                                    {tution.tutionStatus}
+                                <span className={`badge badge-sm ${tuition.tuitionStatus === 'open' ? 'badge-success' : 'badge-warning'}`}>
+                                    {tuition.tuitionStatus}
                                 </span>
                             </td>
                             <td className='space-x-1'>
-                                <Link to={`/tutions/${tution._id}`}>
+                                <Link to={`/tuitions/${tuition._id}`}>
                                     <button className="btn btn-primary btn-sm shadow-none">Details</button>
                                 </Link>
                                 <button
-                                    onClick={() => handleDelete(tution._id)}
+                                    onClick={() => handleDelete(tuition._id)}
                                     className="btn btn-error btn-sm btn-outline shadow-none">
                                     Delete
                                 </button>
@@ -114,4 +125,4 @@ const MyTutions = () => {
     );
 };
 
-export default MyTutions;
+export default MyTuitions;

@@ -43,18 +43,18 @@ const Dashboard = () => {
                             </NavLink>
                         </li>
 
-                        {/* my-tutions  */}
+                        {/* my-tuitions  */}
                         <li>
-                            <NavLink to='/dashboard/my-tutions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Tutions">
+                            <NavLink to='/dashboard/my-tuitions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My tuitions">
                                 {/* icon */}
                                 <FaClipboardList className='text-[16px]'></FaClipboardList>
-                                <span className="is-drawer-close:hidden">My Tutions</span>
+                                <span className="is-drawer-close:hidden">My tuitions</span>
                             </NavLink>
                         </li>
 
-                        {/* post-new-tutions */}
+                        {/* post-new-tuitions */}
                         <li>
-                            <NavLink to='/dashboard/post-new-tution' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post For Tutor">
+                            <NavLink to='/dashboard/post-new-tuition' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post For Tutor">
                                 {/* icon */}
                                 <FiPlusSquare className='text-[16px]'></FiPlusSquare>
                                 <span className="is-drawer-close:hidden">Post For Tutor</span>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                         <li>
                             <NavLink to='/dashboard/post-waiting-for-approval' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post Waiting For Approval">
                                 {/* icon */}
-                                <MdPendingActions  className='text-[16px]'></MdPendingActions>
+                                <MdPendingActions className='text-[16px]'></MdPendingActions>
                                 <span className="is-drawer-close:hidden">Post Waiting For Approval</span>
                             </NavLink>
                         </li>
@@ -92,7 +92,7 @@ const Dashboard = () => {
                         <li>
                             <NavLink to='/dashboard/user-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="User Management">
                                 {/* icon */}
-                                <FaUsersCog  className='text-[16px]'></FaUsersCog>
+                                <FaUsersCog className='text-[16px]'></FaUsersCog>
                                 <span className="is-drawer-close:hidden">User Management</span>
                             </NavLink>
                         </li>

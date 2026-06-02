@@ -11,7 +11,7 @@ const AppliedTutors = () => {
     const { data: appliedTutors = [], isLoading } = useQuery({
         queryKey: ['AppliedTutors', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/tutionApplications?studentEmail=${user?.email}`);
+            const res = await axiosSecure.get(`/tuitionApplications?studentEmail=${user?.email}`);
             return res.data;
         },
         enabled: !!user?.email,
@@ -24,7 +24,13 @@ const AppliedTutors = () => {
         return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     };
 
-    if (isLoading) return <p className="text-center py-10">Loading...</p>;
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
+    }
 
     return (
         <div className="overflow-x-auto">
@@ -65,9 +71,9 @@ const AppliedTutors = () => {
                                 <span className="badge badge-warning badge-sm">Pending</span>
                             </td>
                             <td>
-                                <Link 
-                                to={`/users/${at.tutorEmail}`}
-                                className="btn btn-primary btn-sm shadow-none">View Profile</Link>
+                                <Link
+                                    to={`/users/${at.tutorEmail}`}
+                                    className="btn btn-primary btn-sm shadow-none">View Profile</Link>
                             </td>
                         </tr>
                     ))}

@@ -7,7 +7,7 @@ import { AuthContext } from '../../Context/Auth/AuthContext';
 
 const NavBar = () => {
     const { user, LogOut } = use(AuthContext);
-    
+
     // console.log(user?.email);
 
     const links =
@@ -16,7 +16,7 @@ const NavBar = () => {
             {
                 user && <li key="2"><NavLink to='/dashboard'>Dashboard</NavLink></li>
             }
-            <li key="3"><NavLink to='/tutions'>Tutions</NavLink></li>
+            <li key="3"><NavLink to='/tuitions'>tuitions</NavLink></li>
             <li key="4"><NavLink to='/tutors'>Tutors</NavLink></li>
             <li key="5"><NavLink to='/about'>About</NavLink></li>
             <li key="6"><NavLink to='/contact'>Contact</NavLink></li>
@@ -51,9 +51,9 @@ const NavBar = () => {
                                 SignOut
                             </Link>
                             <div>
-                                <Link 
-                                to='/profile'
-                                className="avatar"
+                                <Link
+                                    to='/profile'
+                                    className="avatar"
                                 >
                                     <div className="w-10 rounded">
                                         <img src={user.photoURL} />

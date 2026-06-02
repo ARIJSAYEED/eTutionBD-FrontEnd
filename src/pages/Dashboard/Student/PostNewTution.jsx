@@ -4,24 +4,24 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/Auth/AuthContext';
 
-const PostNewTution = () => {
+const PostNewTuition = () => {
     const { user } = use(AuthContext);
     console.log(user?.email)
 
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure()
 
-    const handlePostTution = (data) => {
+    const handlePosttuition = (data) => {
 
         console.log(data)
 
-        axiosSecure.post('/tutions', data)
+        axiosSecure.post('/tuitions', data)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Tution has been Posted",
+                        title: "tuition has been Posted",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -40,7 +40,7 @@ const PostNewTution = () => {
             </div>
             <div className="card bg-base-100 w-full max-w-2xl shrink-0 shadow-2xl mx-auto">
                 <div className='card-body'>
-                    <form onSubmit={handleSubmit(handlePostTution)}>
+                    <form onSubmit={handleSubmit(handlePosttuition)}>
                         <fieldset className='fieldset space-y-4'>
 
                             {/* Student Name */}
@@ -236,4 +236,4 @@ const PostNewTution = () => {
     );
 };
 
-export default PostNewTution;
+export default PostNewTuition;

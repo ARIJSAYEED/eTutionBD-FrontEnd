@@ -2,7 +2,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { AuthContext } from "../../Context/Auth/AuthContext";
 import { Link } from "react-router";
 
-const TutionCard = ({ tution }) => {
+const TuitionCard = ({ tuition }) => {
 
     const {
         _id,
@@ -14,13 +14,13 @@ const TutionCard = ({ tution }) => {
         preferredTime,
         tutoringMode,
         expectedSalary,
-        tutionStatus,
+        tuitionStatus,
         // medium,
         // tutorGender,
         // tutorType,
         // specialInstructions,
         // createdAt
-    } = tution;
+    } = tuition;
 
     const subjectList = subjects?.split(',').map(s => s.trim());
 
@@ -36,7 +36,7 @@ const TutionCard = ({ tution }) => {
                             <h2 className="text-[16px] font-semibold">{classGrade}</h2>
                             <p className="text-md text-neutral-600 mt-0.5">📍 {district} · {area}</p>
                         </div>
-                        <span className="badge badge-success badge-soft text-xs">{tutionStatus}</span>
+                        <span className="badge badge-success badge-soft text-xs">{tuitionStatus}</span>
                     </div>
 
                     <div className="divider my-0"></div>
@@ -63,7 +63,7 @@ const TutionCard = ({ tution }) => {
                         <p className="text-lg font-semibold">
                             ৳{expectedSalary} <span className="text-sm font-normal text-neutral-600">/ month</span>
                         </p>
-                        <Link to={`/tutions/${_id}`} className="btn btn-sm btn-primary shadow-none">
+                        <Link to={`/tuitions/${_id}`} className="btn btn-sm btn-primary shadow-none">
                             See details
                             <IoIosArrowForward />
                         </Link>
@@ -75,4 +75,4 @@ const TutionCard = ({ tution }) => {
     );
 };
 
-export default TutionCard;
+export default TuitionCard;
