@@ -4,7 +4,8 @@ import { AuthContext } from '../Context/Auth/AuthContext';
 
 // created a axios instance
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:3000/"
+    // baseURL: "http://localhost:3000/"
+    baseURL: "https://etutionbd-backend.onrender.com/"
 })
 
 const useAxiosSecure = () => {

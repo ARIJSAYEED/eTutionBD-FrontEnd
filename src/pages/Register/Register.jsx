@@ -26,27 +26,22 @@ const Register = () => {
         SignUp(data.email, data.password)
             .then(res => {
 
-                // getting the user info
                 console.log(res.user);
 
                 const formData = new FormData();
                 formData.append('image', image)
 
-                // sensitive data, must store the api key into env file
                 const imgapiurl = `https://api.imgbb.com/1/upload?key=65e600d84bfeaacc6d56a7402516424c`
 
                 axios.post(imgapiurl, formData)
                     .then(res => {
 
-                        // getting the image url
                         const photoURL = res.data.data.url;
 
                         console.log(photoURL)
 
-                        // adding the url to the data 
                         data.image = photoURL;
 
-                        // saving the user data into database
                         axiosSecure.post('/users', data)
                             .then(res => {
                                 if (res.data.insertedId) {
@@ -61,7 +56,6 @@ const Register = () => {
 
                             })
 
-                        // updated the firebase user here
                         const userProfile = {
                             displayName: data.name,
                             photoURL: photoURL
@@ -87,12 +81,12 @@ const Register = () => {
             <div className='flex justify-center items-center'>
                 <Logo></Logo>
             </div>
-            <div className="flex items-center space-x-6">
-                <div className="text-center space-y-6 w-1/2">
+            <div className="flex flex-col lg:flex-row items-center space-y-6 lg:space-y-0 lg:space-x-6">
+                <div className="text-center space-y-6 w-full lg:w-1/2">
                     <img src={registerImg} alt="" />
                 </div>
-                <div className="w-1/2">
-                    <h1 className="text-5xl font-bold capitalize">Register now!</h1>
+                <div className="w-full lg:w-1/2">
+                    <h1 className="text-3xl md:text-5xl font-bold capitalize">Register now!</h1>
                     <p className="py-6">
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                         quasi. In deleniti eaque aut repudiandae et a id nisi.

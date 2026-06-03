@@ -5,12 +5,12 @@ import { MdArrowForwardIos, MdMarkEmailRead } from "react-icons/md";
 
 const Footer = () => {
     return (
-        <footer className="bg-primary text-primary-content px-10 py-12 space-y-10 rounded-sm">
+        <footer className="bg-primary text-primary-content px-4 sm:px-10 py-12 space-y-10 rounded-sm">
 
             {/* Top Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                    <h1 className="text-5xl font-bold">etuitionBD</h1>
+                    <h1 className="text-4xl sm:text-5xl font-bold">etuitionBD</h1>
                     <p className="text-primary-content/60 text-sm max-w-sm">
                         Connecting students with the best tutors across Bangladesh — tailored to your needs and location.
                     </p>
@@ -21,7 +21,7 @@ const Footer = () => {
                         <input
                             type="email"
                             placeholder="Enter your email"
-                            className="bg-transparent px-4 py-2 text-sm outline-none placeholder:text-primary-content/40 w-56"
+                            className="bg-transparent px-4 py-2 text-sm outline-none placeholder:text-primary-content/40 w-full sm:w-56"
                         />
                         <button className="bg-primary-content text-primary px-3 py-2 hover:opacity-90 transition-opacity">
                             <MdArrowForwardIos size={16} />
