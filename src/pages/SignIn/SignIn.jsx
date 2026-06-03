@@ -30,19 +30,19 @@ const SignIn = () => {
             .catch(err => {
                 console.log(err);
             })
-
     }
+
     return (
         <div className="w-11/12 mx-auto py-10 flex justify-center flex-col gap-6">
             <div className='flex justify-center items-center'>
                 <Logo></Logo>
             </div>
-            <div className="flex items-center space-x-6">
-                <div className="text-center space-y-6 w-1/2">
+            <div className="flex flex-col lg:flex-row items-center space-y-6 lg:space-y-0 lg:space-x-6">
+                <div className="text-center space-y-6 w-full lg:w-1/2">
                     <img src={signInImg} alt="" />
                 </div>
-                <div className="w-1/2">
-                    <h1 className="text-5xl font-bold capitalize">Sign-In now!</h1>
+                <div className="w-full lg:w-1/2">
+                    <h1 className="text-3xl md:text-5xl font-bold capitalize">Sign-In now!</h1>
                     <p className="py-6">
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
