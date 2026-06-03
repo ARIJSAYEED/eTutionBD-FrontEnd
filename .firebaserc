@@ -1,8 +1,5 @@
 {
   "projects": {
-    "default": "etuitionbd-af1c0",
-    "prod": "etuitionbd-af1c0"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "etutionbd-af1c0"
+  }
 }
