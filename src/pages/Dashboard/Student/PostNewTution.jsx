@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Context/Auth/AuthContext';
 
 const PostNewTuition = () => {
     const { user } = use(AuthContext);
-    console.log(user?.email)
+    // console.log(user?.email)
 
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure()

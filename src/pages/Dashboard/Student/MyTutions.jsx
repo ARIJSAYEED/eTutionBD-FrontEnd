@@ -9,7 +9,7 @@ const MyTuitions = () => {
 
     const { user } = use(AuthContext);
     const axiosSecure = useAxiosSecure()
-    console.log("user from my tutions", user?.email)
+    // console.log("user from my tutions", user?.email)
 
     const { data: tuitions = [], refetch, isLoading } = useQuery({
         queryKey: ['my-tuitions', user?.email],

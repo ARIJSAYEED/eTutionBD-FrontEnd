@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { use, useEffect } from 'react';
 import { AuthContext } from '../Context/Auth/AuthContext';
+import { useNavigate } from 'react-router';
 
 // created a axios instance
 const axiosSecure = axios.create({
@@ -10,7 +11,8 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
 
-    const { user } = use(AuthContext)
+    const { user, LogOut } = use(AuthContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const reqInterceptor = axiosSecure.interceptors.request.use(config => {
@@ -21,13 +23,18 @@ const useAxiosSecure = () => {
         const resInterceptor = axiosSecure.interceptors.response.use((response) => { return response },
             (error) => {
                 console.log(error)
+                const statusCode = error.status;
+                if (statusCode === 401 || statusCode === 403) {
+                    LogOut().then(() => navigate('/'))
+                }
+                return Promise.reject(error);
             })
 
         return () => {
             axiosSecure.interceptors.request.eject(reqInterceptor);
-            axiosSecure.interceptors.request.eject(resInterceptor);
+            axiosSecure.interceptors.response.eject(resInterceptor);
         }
-    }, [user])
+    }, [user, LogOut, navigate])
 
     return axiosSecure;
 };

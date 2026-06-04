@@ -338,12 +338,7 @@ const TutionDetails = () => {
                                 placeholder="e.g. 2 years tutoring SSC students" className="input input-bordered w-full mt-1" />
                             {errors.experience && <p className="text-red-500 text-xs mt-1">{errors.experience.message}</p>}
                         </div>
-                        <div>
-                            <label className="text-xs font-medium text-neutral-500 uppercase tracking-wide">tutorsExpected Salary (৳/month)</label>
-                            <input type="number" {...register("expectedSalary", { required: "Expected salary is required" })}
-                                placeholder="e.g. 5000" className="input input-bordered w-full mt-1" />
-                            {errors.expectedSalary && <p className="text-red-500 text-xs mt-1">{errors.expectedSalary.message}</p>}
-                        </div>
+
                         <div className="flex justify-end gap-2 mt-2">
                             <button type="button" onClick={() => document.getElementById(`apply_modal_${_id}`).close()}
                                 className="btn btn-ghost btn-sm">Cancel</button>

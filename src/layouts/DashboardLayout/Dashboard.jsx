@@ -2,10 +2,12 @@ import React from 'react';
 import Logo from '../../components/shared/Logo';
 import { Link, NavLink, Outlet } from 'react-router';
 import { MdOutlinePostAdd, MdPendingActions } from "react-icons/md";
-import { FaChalkboardTeacher, FaClipboardList, FaUsersCog } from "react-icons/fa";
+import { FaChalkboardTeacher, FaClipboardList, FaCoins, FaGraduationCap, FaPaperPlane, FaUsersCog } from "react-icons/fa";
 import { FiPlusSquare } from 'react-icons/fi';
 import { HiHome, HiMiniWallet } from "react-icons/hi2";
 import useRole from '../../hooks/useRole';
+import { PiHandCoinsFill } from "react-icons/pi";
+
 
 
 const Dashboard = () => {
@@ -46,43 +48,49 @@ const Dashboard = () => {
                         </li>
 
                         {/* my-tuitions  */}
-                        <li>
-                            <NavLink to='/dashboard/my-tuitions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My tuitions">
-                                {/* icon */}
-                                <FaClipboardList className='text-[16px]'></FaClipboardList>
-                                <span className="is-drawer-close:hidden">My tuitions</span>
-                            </NavLink>
-                        </li>
+                        {
+                            role === "student" && <>
+                                <li>
+                                    <NavLink to='/dashboard/my-tuitions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My tuitions">
+                                        {/* icon */}
+                                        <FaClipboardList className='text-[16px]'></FaClipboardList>
+                                        <span className="is-drawer-close:hidden">My tuitions</span>
+                                    </NavLink>
+                                </li>
 
-                        {/* post-new-tuitions */}
-                        <li>
-                            <NavLink to='/dashboard/post-new-tuition' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post For Tutor">
-                                {/* icon */}
-                                <FiPlusSquare className='text-[16px]'></FiPlusSquare>
-                                <span className="is-drawer-close:hidden">Post For Tutor</span>
-                            </NavLink>
-                        </li>
+                                {/* post-new-tuitions */}
+                                <li>
+                                    <NavLink to='/dashboard/post-new-tuition' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post For Tutor">
+                                        {/* icon */}
+                                        <FiPlusSquare className='text-[16px]'></FiPlusSquare>
+                                        <span className="is-drawer-close:hidden">Post For Tutor</span>
+                                    </NavLink>
+                                </li>
 
-                        {/* applied-tutors  */}
-                        <li>
-                            <NavLink to='/dashboard/applied-tutors' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Applied Tutors">
-                                {/* icon */}
-                                <FaChalkboardTeacher className='text-[16px]'></FaChalkboardTeacher>
-                                <span className="is-drawer-close:hidden">Applied Tutors</span>
-                            </NavLink>
-                        </li>
+                                {/* applied-tutors  */}
+                                <li>
+                                    <NavLink to='/dashboard/applied-tutors' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Applied Tutors">
+                                        {/* icon */}
+                                        <FaChalkboardTeacher className='text-[16px]'></FaChalkboardTeacher>
+                                        <span className="is-drawer-close:hidden">Applied Tutors</span>
+                                    </NavLink>
+                                </li>
 
-                        {/* payments  */}
-                        <li>
-                            <NavLink to='/dashboard/payments' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payments">
-                                {/* icon */}
-                                <HiMiniWallet className='text-[16px]'></HiMiniWallet>
-                                <span className="is-drawer-close:hidden">Payments</span>
-                            </NavLink>
-                        </li>
+                                {/* payments  */}
+                                <li>
+                                    <NavLink to='/dashboard/payments' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payments">
+                                        {/* icon */}
+                                        <HiMiniWallet className='text-[16px]'></HiMiniWallet>
+                                        <span className="is-drawer-close:hidden">Payments</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+
 
                         {
                             role === "admin" && <>
+                                {/* Post-Waiting-For-Approval */}
                                 <li>
                                     <NavLink to='/dashboard/post-waiting-for-approval' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post Waiting For Approval">
                                         {/* icon */}
@@ -102,7 +110,37 @@ const Dashboard = () => {
                             </>
                         }
 
-                        {/* Post-Waiting-For-Approval */}
+                        {
+                            role === "tutor" && <>
+                                {/* ongoing-tuitions  */}
+                                <li>
+                                    <NavLink to='/dashboard/ongoing-tuitions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Ongoing Tuitions">
+                                        {/* icon */}
+                                        <FaGraduationCap className='text-[16px]'></FaGraduationCap>
+                                        <span className="is-drawer-close:hidden">Ongoing Tuitions</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* applied-tuitions  */}
+                                <li>
+                                    <NavLink to='/dashboard/applied-tuitions' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Applied Tuitions">
+                                        {/* icon */}
+                                        <FaPaperPlane className='text-[16px]'></FaPaperPlane>
+                                        <span className="is-drawer-close:hidden">Applied Tuitions</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* earnings  */}
+                                <li>
+                                    <NavLink to='/dashboard/earnings' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Earnings">
+                                        {/* icon */}
+                                        <FaCoins className='text-[16px]'></FaCoins>
+                                        <span className="is-drawer-close:hidden">Earnings</span>
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
+
 
 
 

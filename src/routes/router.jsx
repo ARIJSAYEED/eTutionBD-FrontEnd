@@ -26,6 +26,9 @@ import Tuitions from '../pages/Tutions/Tutions';
 import TutionDetails from '../pages/Tutions/TutionDetails';
 import PaymentS from '../pages/Dashboard/Payment/PaymentS';
 import PaymentC from '../pages/Dashboard/Payment/PaymentC';
+import OngoingTuitions from '../pages/Dashboard/Tutor/OngoingTuitions';
+import AppliedTuitions from '../pages/Dashboard/Tutor/AppliedTuitions';
+import Earnings from '../pages/Dashboard/Tutor/Earnings';
 
 const router = createBrowserRouter([
     {
@@ -109,7 +112,20 @@ const router = createBrowserRouter([
             {
                 path: 'payment-cancel',
                 Component: PaymentC
-            }
+            },
+            {
+                path: 'ongoing-tuitions',
+                Component: OngoingTuitions
+            },
+            {
+                path: 'applied-tuitions',
+                Component: AppliedTuitions
+            },
+            {
+                path: 'earnings',
+                Component: Earnings
+            },
+            
         ]
     },
     {
