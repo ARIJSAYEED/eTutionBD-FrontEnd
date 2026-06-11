@@ -11,7 +11,7 @@ const LatestTutors = () => {
     const { data: tutors = [], isLoading } = useQuery({
         queryKey: ['latest-tutors'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users?role=tutor');
+            const res = await axiosSecure.get('/users?role=tutor&limit=4');
             return res.data;
         }
     });

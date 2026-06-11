@@ -90,9 +90,9 @@ const Dashboard = () => {
 
                         {
                             role === "admin" && <>
-                                {/* Post-Waiting-For-Approval */}
+                                {/* tuition-management */}
                                 <li>
-                                    <NavLink to='/dashboard/post-waiting-for-approval' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Tuition Management">
+                                    <NavLink to='/dashboard/tuition-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Tuition Management">
                                         {/* icon */}
                                         <MdPendingActions className='text-[16px]'></MdPendingActions>
                                         <span className="is-drawer-close:hidden">Tuition Management</span>

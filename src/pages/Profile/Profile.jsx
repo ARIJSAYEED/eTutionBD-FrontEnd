@@ -9,6 +9,7 @@ const Profile = () => {
 
     const { data: userInfo = {} } = useQuery({
         queryKey: ['user', user?.email],
+        // enabled: !!user?.email, 
         queryFn: async () => {
             const res = await axiosSecure.get(`/users?email=${user.email}`);
             return res.data;

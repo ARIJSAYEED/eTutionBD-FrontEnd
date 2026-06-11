@@ -31,6 +31,7 @@ import AppliedTuitions from '../pages/Dashboard/Tutor/AppliedTuitions';
 import Earnings from '../pages/Dashboard/Tutor/Earnings';
 import TuitionManagement from '../pages/Dashboard/Admin/PostWaitingForApproval';
 import ReportsAndAnalytics from '../pages/Dashboard/Admin/reportsAndAnalytics';
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter([
     {
@@ -100,12 +101,16 @@ const router = createBrowserRouter([
                 Component: Payments
             },
             {
-                path: 'post-waiting-for-approval',
-                Component: TuitionManagement
+                path: 'tuition-management',
+                element: <AdminRoute>
+                    <TuitionManagement></TuitionManagement>
+                </AdminRoute>
             },
             {
                 path: 'user-management',
-                Component: UserManagement
+                element: <AdminRoute>
+                    <UserManagement></UserManagement>
+                </AdminRoute>
             },
             {
                 path: 'payment-success',
@@ -128,8 +133,8 @@ const router = createBrowserRouter([
                 Component: Earnings
             },
             {
-                path:'reports-and-analytics',
-                Component:ReportsAndAnalytics
+                path: 'reports-and-analytics',
+                Component: ReportsAndAnalytics
             }
 
         ]
