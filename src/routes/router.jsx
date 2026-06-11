@@ -14,7 +14,7 @@ import Payments from '../pages/Dashboard/Student/Payments';
 import Tutors from '../pages/Tutors/Tutors';
 // import TuitionDetails from '../pages/tuitions/tuitionDetails';
 import PrivateRoute from './PrivateRoute';
-import PostWaitingForApproval from '../pages/Dashboard/Admin/PostWaitingForApproval';
+// import TuitionManagement from '../pages/Dashboard/Admin/TuitionManagement';
 import UserManagement from '../pages/Dashboard/Admin/UserManagement';
 import Profile from '../pages/Profile/Profile';
 import TutorDetails from '../pages/Tutors/TutorDetails';
@@ -29,6 +29,8 @@ import PaymentC from '../pages/Dashboard/Payment/PaymentC';
 import OngoingTuitions from '../pages/Dashboard/Tutor/OngoingTuitions';
 import AppliedTuitions from '../pages/Dashboard/Tutor/AppliedTuitions';
 import Earnings from '../pages/Dashboard/Tutor/Earnings';
+import TuitionManagement from '../pages/Dashboard/Admin/PostWaitingForApproval';
+import ReportsAndAnalytics from '../pages/Dashboard/Admin/reportsAndAnalytics';
 
 const router = createBrowserRouter([
     {
@@ -99,7 +101,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'post-waiting-for-approval',
-                Component: PostWaitingForApproval
+                Component: TuitionManagement
             },
             {
                 path: 'user-management',
@@ -125,7 +127,11 @@ const router = createBrowserRouter([
                 path: 'earnings',
                 Component: Earnings
             },
-            
+            {
+                path:'reports-and-analytics',
+                Component:ReportsAndAnalytics
+            }
+
         ]
     },
     {

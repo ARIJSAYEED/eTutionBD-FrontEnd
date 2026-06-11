@@ -27,8 +27,49 @@ const UserManagement = () => {
 
     // console.log(users)
 
-    const handleMakeAdmin = (id) => {
+    const handleMakeAnything = (id, update) => {
         console.log(id)
+        // const update = { role: "admin" }
+        const role = update.role
+        Swal.fire({
+            title: "Are you sure?",
+            text: `You are going to make this user a ${role}!`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Confirm"
+        }).then((result) => {
+            if (result.isConfirmed)
+                axiosSecure.patch(`/users/${id}/role`, update)
+                    .then((res) => {
+                        console.log(res.data)
+                        if (res.data.modifiedCount) {
+                            refetch()
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: `User has been made ${role}!`,
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }
+                    })
+                    .catch(err => console.log(err))
+        });
+    };
+
+    const handleMakeAdmin = (id) => {
+        const update = { role: "admin" }
+        handleMakeAnything(id, update)
+    }
+    const handleMakeTutor = (id) => {
+        const update = { role: "tutor" }
+        handleMakeAnything(id, update)
+    }
+    const handleMakeStudent = (id) => {
+        const update = { role: "student" }
+        handleMakeAnything(id, update)
     }
 
     // this action deletes user only from database not from firebase, need some research for that
@@ -97,10 +138,23 @@ const UserManagement = () => {
                                     day: 'numeric', month: 'short', year: 'numeric'
                                 })}
                             </td>
-                            <td className="space-x-1">
-                                <button
-                                    onClick={() => handleMakeAdmin(u._id)}
-                                    className="btn btn-primary btn-sm shadow-none">Make Admin</button>
+                            <td className="space-x-1 text-end">
+                                {
+                                    u.role === "admin"
+                                        ?
+                                        <>
+                                            <button
+                                                onClick={() => handleMakeTutor(u._id)}
+                                                className="btn btn-primary btn-sm shadow-none">Make Tutor</button>
+                                            <button
+                                                onClick={() => handleMakeStudent(u._id)}
+                                                className="btn btn-primary btn-sm shadow-none">Make Student</button>
+                                        </>
+                                        :
+                                        <button
+                                            onClick={() => handleMakeAdmin(u._id)}
+                                            className="btn btn-primary btn-sm shadow-none">Make Admin</button>
+                                }
                                 <button
                                     onClick={() => handleDelete(u._id)}
                                     className="btn btn-error btn-sm btn-outline shadow-none">Delete</button>

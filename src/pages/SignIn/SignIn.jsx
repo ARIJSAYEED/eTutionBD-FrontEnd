@@ -8,13 +8,14 @@ import Swal from 'sweetalert2';
 import SocialLogin from '../../components/shared/SocialLogin';
 
 const SignIn = () => {
-    const { LogIn } = use(AuthContext);
+    const { LogIn, loading } = use(AuthContext);
     const { register, handleSubmit } = useForm()
     const navigate = useNavigate()
 
     const handleSignIn = (data) => {
         const email = data.email
         const password = data.password
+
         LogIn(email, password)
             .then(res => {
                 console.log(res);
@@ -29,7 +30,20 @@ const SignIn = () => {
             })
             .catch(err => {
                 console.log(err);
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Failed",
+                    text: err.message,
+                });
             })
+    }
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
     }
 
     return (

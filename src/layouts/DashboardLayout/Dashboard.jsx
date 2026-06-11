@@ -7,7 +7,7 @@ import { FiPlusSquare } from 'react-icons/fi';
 import { HiHome, HiMiniWallet } from "react-icons/hi2";
 import useRole from '../../hooks/useRole';
 import { PiHandCoinsFill } from "react-icons/pi";
-
+import { TbReport } from "react-icons/tb";
 
 
 const Dashboard = () => {
@@ -92,10 +92,10 @@ const Dashboard = () => {
                             role === "admin" && <>
                                 {/* Post-Waiting-For-Approval */}
                                 <li>
-                                    <NavLink to='/dashboard/post-waiting-for-approval' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Post Waiting For Approval">
+                                    <NavLink to='/dashboard/post-waiting-for-approval' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Tuition Management">
                                         {/* icon */}
                                         <MdPendingActions className='text-[16px]'></MdPendingActions>
-                                        <span className="is-drawer-close:hidden">Post Waiting For Approval</span>
+                                        <span className="is-drawer-close:hidden">Tuition Management</span>
                                     </NavLink>
                                 </li>
 
@@ -105,6 +105,15 @@ const Dashboard = () => {
                                         {/* icon */}
                                         <FaUsersCog className='text-[16px]'></FaUsersCog>
                                         <span className="is-drawer-close:hidden">User Management</span>
+                                    </NavLink>
+                                </li>
+
+                                {/* Reports & Analytics */}
+                                <li>
+                                    <NavLink to='/dashboard/reports-and-analytics' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Reports & Analytics">
+                                        {/* icon */}
+                                        <TbReport className='text-[16px]'></TbReport>
+                                        <span className="is-drawer-close:hidden">Reports & Analytics</span>
                                     </NavLink>
                                 </li>
                             </>

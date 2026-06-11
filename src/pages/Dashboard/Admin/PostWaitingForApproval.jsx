@@ -4,7 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../Context/Auth/AuthContext';
 import Swal from 'sweetalert2';
 
-const PostWaitingForApproval = () => {
+const TuitionManagement = () => {
 
     const { user } = use(AuthContext)
     const axiosSecure = useAxiosSecure()
@@ -97,4 +97,4 @@ const PostWaitingForApproval = () => {
     );
 };
 
-export default PostWaitingForApproval;
+export default TuitionManagement;

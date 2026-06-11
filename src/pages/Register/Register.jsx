@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
 const Register = () => {
-    const { SignUp, updateUser } = use(AuthContext);
+    const { SignUp, updateUser, loading } = use(AuthContext);
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
@@ -73,7 +73,20 @@ const Register = () => {
             })
             .catch(err => {
                 console.log(err);
+                Swal.fire({
+                    icon: "error",
+                    title: "Register Failed",
+                    text: err.message,
+                });
             })
+    }
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        )
     }
 
     return (
