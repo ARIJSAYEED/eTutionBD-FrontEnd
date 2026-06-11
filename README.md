@@ -30,9 +30,7 @@ Use these credentials to test the platform:
 
 
 
-🌐 \*\*Live Demo:\*\* \[https://etutionbd-af1c0.web.app/](https://etutionbd-af1c0.web.app/)
-
-
+🌐 \*\*Live Demo:\*\* https://etutionbd-af1c0.web.app
 
 \## ✨ Features
 
