@@ -114,7 +114,18 @@ Use these credentials to test the platform:
 
 
 
-\### Local Development
+\### Live and Github links
+
+Admin Email - admin@gmail.com
+
+Admin Password - 123456
+
+Live Site Link - https://etutionbd-af1c0.web.app/
+
+GitHub Repository (Client) - https://github.com/ARIJSAYEED/eTutionBD-FrontEnd.git
+
+GitHub Repository (Server) - https://github.com/ARIJSAYEED/eTutionBD-BackEnd.git
+
 
 
 
