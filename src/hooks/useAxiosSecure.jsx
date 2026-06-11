@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router';
 
 // created a axios instance
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:3000/"
-    // baseURL: "https://etutionbd-backend.onrender.com/"
+    // baseURL: "http://localhost:3000/"
+    baseURL: "https://etutionbd-backend.onrender.com/"
 })
 
 const useAxiosSecure = () => {
